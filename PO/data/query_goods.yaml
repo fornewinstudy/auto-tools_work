@@ -1,0 +1,13 @@
+- title: 输入有效商品名称，查询成功
+  name: jimBeam Whiskey
+  expect_val: 按上架时间排序
+
+- title: 输入不存在的商品名称，查询结果为空
+  name: 水果apple
+  expect_val: 无法搜索到您要找的商品！
+
+- title: 商品名称为空，页面返回提示信息
+  name: ''
+  expect_val: 请输入搜索关键词！
+
+

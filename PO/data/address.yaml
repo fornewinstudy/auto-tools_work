@@ -1,0 +1,52 @@
+- title: 添加收货地址，添加成功
+  name: "张三"
+  address: "龙岗坂田"
+  EM: "aaa@qq.com"
+  number: '13033453189'
+  expect_val: "您的收货地址信息已成功更新！"
+
+- title: 姓名为空，添加失败
+  name: ""
+  address: "龙岗坂田"
+  EM: "aaa@qq.com"
+  number: '13033453189'
+  expect_val: "收货人姓名不能为空！"
+
+- title: 详细地址为空，添加失败
+  name: "张三"
+  address: ""
+  EM: "aaa@qq.com"
+  number: '13033453189'
+  expect_val: "收货人的详细地址不能为空！"
+
+- title: 邮件地址为空，添加失败
+  name: "张三"
+  address: "龙岗坂田"
+  EM: ""
+  number: '13033453189'
+  expect_val: "您输入的邮件地址不是一个合法的邮件地址。"
+
+- title: 电话为空，添加失败
+  name: "张三"
+  address: "龙岗坂田"
+  EM: "aaa@qq.com"
+  number: ''
+  expect_val: "手机不能为空！"
+
+- title: 邮件地址错误，添加失败
+  name: "张三"
+  address: "龙岗坂田"
+  EM: "@qq.com"
+  number: '13033453189'
+  expect_val: "您输入的邮件地址不是一个合法的邮件地址。"
+
+- title: 手机号错误，添加失败
+  name: "张三"
+  address: "龙岗坂田"
+  EM: "aaa@qq.com"
+  number: '130334531'
+  expect_val: "手机号码不是合法号码"
+
+
+
+
