@@ -1,0 +1,6 @@
+- title: 用户名正确，密码正确，登入成功
+  date: {
+    username: 'admin',
+    password: '123456'
+    }
+  expect_val: success
