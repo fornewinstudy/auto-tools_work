@@ -1,0 +1,21 @@
+- title: 输入正确且商城有售的商品名称，搜索成功
+  query_data: {
+  "keywords": "水果",
+  "dataBi": "k1"
+  }
+  expect_val: 水果
+
+#- title: 输入错误的商品名称，搜索失败
+#  query_data: {
+#  "keywords": "aiuasiiv",
+#  "dataBi": "k1"
+#  }
+#  expect_val: 无法搜索到您要找的商品
+#
+#- title: 输入空的商品名称，搜索失败
+#  query_data: {
+#  "keywords": "",
+#  "dataBi": "k1"
+#  }
+#  expect_val: 请输入搜索关键词！
+

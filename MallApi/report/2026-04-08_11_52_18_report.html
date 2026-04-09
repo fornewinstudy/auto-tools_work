@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试报告</title>
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src=" https://cdn.staticfile.org/jquery/2.0.0/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/echarts/5.1.2/echarts.min.js"></script>
+    <!--    页面样式-->
+    <style type="text/css">
+        /*标题样式*/
+        .title {
+            width: auto;
+            height: 60px;
+            text-align: center;
+            font: bolder 38px/60px "Microsoft YaHei UI";
+        }
+
+        /*汇总信息样式*/
+        .summary {
+            width: 90%;
+            position: absolute;
+            top: 120px;
+            margin-left: 5%;
+
+        }
+
+        .text-left {
+            font: bolder 20px/30px "Microsoft YaHei UI";
+        }
+
+        .left {
+            width: 50%;
+            float: left;
+
+        }
+
+        .right {
+            width: 50%;
+            float: right;
+
+        }
+
+        .desc {
+            float: left;
+            width: 100%;
+        }
+
+        .list-group-item span {
+            font: normal 16px/38px "Microsoft YaHei UI";
+            padding: 30px;
+
+        }
+
+        .list-group-item {
+            position: relative;
+            display: block;
+            padding: .4rem 1.25rem;
+            background-color: #fff;
+            border: 1px solid rgba(0, 0, 0, .125);
+        }
+
+        /* 执行信息样式   */
+        .test_info {
+            width: 90%;
+            position: absolute;
+            top: 900px;
+            margin-left: 5%;
+
+            color: #28a745 !important;
+        }
+
+        .table td, th {
+            border: solid 2px rgba(9, 122, 51, 0.11) !important;
+            padding: 0;
+            line-height: 40px;
+            text-align: center;
+
+        }
+
+
+        select {
+            border: 0;
+            padding: 0;
+            margin: 0;
+            height: 2em;
+            width: 8em;
+            margin-left: 2em;
+        }
+
+        option {
+            text-align: center;
+            height: 36px;
+            font: none 18px/36px "Microsoft YaHei UI";
+            color: #28a745 !important;
+        }
+
+        .test_log {
+            background: rgba(163, 171, 189, 0.15);
+            width: 100%;
+            height: 50px;
+            border-top: none;
+            border-bottom: none;
+            display: none;
+            text-align: left;
+        }
+
+        .test_log td {
+            text-align: left;
+            height: 30px;
+            margin: 0;
+            padding-left: 3em;
+            padding-right:3em;
+            font: none 18px/24px "Microsoft YaHei UI";
+            color: #9e141a;
+        }
+
+        pre {
+            margin: 0;
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+            line-height: 22px;
+            font-size: 14px
+        }
+
+        /*    测试图表显示*/
+        .char {
+            width: 90%;
+            position: absolute;
+            top: 450px;
+            margin-left: 5%;
+            color: #28a745 !important;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<!--报告标题-->
+<div class="title text-success">
+    <div class="shadow-lg p-3 mb-5 bg-white rounded">生鲜超市测试报告</div>
+</div>
+
+<!--汇总信息-->
+<div class="summary">
+    <p class="text-left text-success">测试结果汇总</p>
+    <div class="left">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">测试人员</button>
+                <span class="text-dark">钟国强</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">开始时间</button>
+                <span class="text-dark">2026-04-08 11:52:18</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">执行时间</button>
+                <span class="text-dark">0.00 S</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">用例总数</button>
+                <span class="text-dark">9</span>
+            </li>
+
+
+        </ul>
+    </div>
+    <div class="right">
+        <ul class="list-group">
+
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">成功用例</button>
+                <span class="text-success">0</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-warning">失败用例</button>
+                <span class="text-warning">0</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-danger">错误用例</button>
+                <span class="text-danger">9</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-secondary">跳过用例</button>
+                <span class="text-secondary">0</span>
+            </li>
+        </ul>
+    </div>
+    <div class="desc">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">描述信息</button>
+                <span class="text-secondary">生鲜超市接口自动化测试报告</span>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
+
+<!--测试图表-->
+<div class="char">
+    <p class="text-left text-success">图表展示</p>
+    <div id="char2" style="width: 49%;height: 400px;float: left"></div>
+    <div id="char" style="width: 49%;height: 400px ;float: left"></div>
+</div>
+
+<!--详细信息-->
+<div class="test_info">
+
+    <p class="text-left text-success">详细信息</p>
+    <div class="table_data">
+
+        <table class="table">
+            <thead class="bg-success text-light">
+            <tr>
+                <th scope="col" style="width: 5%;padding: 0">编号</th>
+                <th scope="col" style="width: 20%;padding: 0">
+                    <span>测试类</span>
+                    <select id="testClass">
+                        <option>所有</option>
+                        
+                            <option>_FailedTest</option>
+                        
+                    </select>
+
+                </th>
+
+                <th scope="col" style="width: 15%;padding: 0">测试方法</th>
+                <th scope="col" style="width: 20%;padding: 0">用例描述</th>
+                <th scope="col" style="width: 15%;padding: 0">执行时间</th>
+                <th scope="col" style="width: 20%;padding: 0">
+
+                    <span>执行结果</span>
+                    <select id="testResult">
+                        <option>所有</option>
+                        <option class="text-success">成功</option>
+                        <option class="text-warning">失败</option>
+                        <option class="text-danger">错误</option>
+                        <option class="text-info">跳过</option>
+                    </select>
+
+                </th>
+                <th scope="col" style="width: 10%;padding: 0">详细信息</th>
+            </tr>
+            </thead>
+            <tbody>
+            
+                <tr>
+                    <td>1</td>
+                    <td class="_FailedTest">_FailedTest</td>
+                    <td>address</td>
+                    <td>None</td>
+                    <td>0.00033s</td>
+                    
+                        <td class="text-danger">错误</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "/usr/lib/python3.12/unittest/case.py", line 58, in testPartExecutor
+    yield
+</pre>
+                        
+
+                            <pre>  File "/usr/lib/python3.12/unittest/case.py", line 634, in run
+    self._callTestMethod(testMethod)
+</pre>
+                        
+
+                            <pre>  File "/usr/lib/python3.12/unittest/case.py", line 589, in _callTestMethod
+    if method() is not None:
+       ^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "/usr/lib/python3.12/unittest/loader.py", line 33, in testFailure
+    raise self._exception
+</pre>
+                        
+
+                            <pre>ImportError: Failed to import test module: address
+Traceback (most recent call last):
+  File "/home/cjh/PycharmProjects/PythonProject/.venv/lib/python3.12/site-packages/unittestreport/core/dataDriver.py", line 73, in wrapper
+    with open(file_path, "r", encoding="utf-8") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\python\\pythonBase\\MallApi\\data\\address.yaml'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/cjh/PycharmProjects/PythonProject/MallApi/testcases/address.py", line 9, in <module>
+    class Addres(unittest.TestCase):
+  File "/home/cjh/PycharmProjects/PythonProject/MallApi/testcases/address.py", line 16, in Addres
+    @yaml_data(r"D:\python\pythonBase\MallApi\data\address.yaml")
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cjh/PycharmProjects/PythonProject/.venv/lib/python3.12/site-packages/unittestreport/core/dataDriver.py", line 76, in wrapper
+    with open(file_path, "r", encoding="gbk") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\python\\pythonBase\\MallApi\\data\\address.yaml'
+
+</pre>
+                        
+
+                            <pre>address (unittest.loader._FailedTest.address)执行——>【错误Error】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>2</td>
+                    <td class="_FailedTest">_FailedTest</td>
+                    <td>leaving</td>
+                    <td>None</td>
+                    <td>0.000168s</td>
+                    
+                        <td class="text-danger">错误</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "/usr/lib/python3.12/unittest/case.py", line 58, in testPartExecutor
+    yield
+</pre>
+                        
+
+                            <pre>  File "/usr/lib/python3.12/unittest/case.py", line 634, in run
+    self._callTestMethod(testMethod)
+</pre>
+                        
+
+                            <pre>  File "/usr/lib/python3.12/unittest/case.py", line 589, in _callTestMethod
+    if method() is not None:
+       ^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "/usr/lib/python3.12/unittest/loader.py", line 33, in testFailure
+    raise self._exception
+</pre>
+                        
+
+                            <pre>ImportError: Failed to import test module: leaving
+Traceback (most recent call last):
+  File "/home/cjh/PycharmProjects/PythonProject/.venv/lib/python3.12/site-packages/unittestreport/core/dataDriver.py", line 73, in wrapper
+    with open(file_path, "r", encoding="utf-8") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\python\\pythonBase\\MallApi\\data\\leave_msg.yaml'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/cjh/PycharmProjects/PythonProject/MallApi/testcases/leaving.py", line 9, in <module>
+    class Leave(unittest.TestCase):
+  File "/home/cjh/PycharmProjects/PythonProject/MallApi/testcases/leaving.py", line 13, in Leave
+    @yaml_data(r"D:\python\pythonBase\MallApi\data\leave_msg.yaml")
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cjh/PycharmProjects/PythonProject/.venv/lib/python3.12/site-packages/unittestreport/core/dataDriver.py", line 76, in wrapper
+    with open(file_path, "r", encoding="gbk") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\python\\pythonBase\\MallApi\\data\\leave_msg.yaml'
+
+</pre>
+                        
+
+                            <pre>leaving (unittest.loader._FailedTest.leaving)执行——>【错误Error】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>3</td>
+                    <td class="_FailedTest">_FailedTest</td>
+                    <td>query</td>
+                    <td>None</td>
+                    <td>0.000154s</td>
+                    
+                        <td class="text-danger">错误</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "/usr/lib/python3.12/unittest/case.py", line 58, in testPartExecutor
+    yield
+</pre>
+                        
+
+                            <pre>  File "/usr/lib/python3.12/unittest/case.py", line 634, in run
+    self._callTestMethod(testMethod)
+</pre>
+                        
+
+                            <pre>  File "/usr/lib/python3.12/unittest/case.py", line 589, in _callTestMethod
+    if method() is not None:
+       ^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "/usr/lib/python3.12/unittest/loader.py", line 33, in testFailure
+    raise self._exception
+</pre>
+                        
+
+                            <pre>ImportError: Failed to import test module: query
+Traceback (most recent call last):
+  File "/home/cjh/PycharmProjects/PythonProject/.venv/lib/python3.12/site-packages/unittestreport/core/dataDriver.py", line 73, in wrapper
+    with open(file_path, "r", encoding="utf-8") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\python\\pythonBase\\MallApi\\data\\query.yaml'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/cjh/PycharmProjects/PythonProject/MallApi/testcases/query.py", line 10, in <module>
+    class  Query(unittest.TestCase):
+  File "/home/cjh/PycharmProjects/PythonProject/MallApi/testcases/query.py", line 15, in Query
+    @yaml_data(r"D:\python\pythonBase\MallApi\data\query.yaml")
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cjh/PycharmProjects/PythonProject/.venv/lib/python3.12/site-packages/unittestreport/core/dataDriver.py", line 76, in wrapper
+    with open(file_path, "r", encoding="gbk") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\python\\pythonBase\\MallApi\\data\\query.yaml'
+
+</pre>
+                        
+
+                            <pre>query (unittest.loader._FailedTest.query)执行——>【错误Error】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>4</td>
+                    <td class="_FailedTest">_FailedTest</td>
+                    <td>settlement</td>
+                    <td>None</td>
+                    <td>0.000148s</td>
+                    
+                        <td class="text-danger">错误</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "/usr/lib/python3.12/unittest/case.py", line 58, in testPartExecutor
+    yield
+</pre>
+                        
+
+                            <pre>  File "/usr/lib/python3.12/unittest/case.py", line 634, in run
+    self._callTestMethod(testMethod)
+</pre>
+                        
+
+                            <pre>  File "/usr/lib/python3.12/unittest/case.py", line 589, in _callTestMethod
+    if method() is not None:
+       ^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "/usr/lib/python3.12/unittest/loader.py", line 33, in testFailure
+    raise self._exception
+</pre>
+                        
+
+                            <pre>ImportError: Failed to import test module: settlement
+Traceback (most recent call last):
+  File "/home/cjh/PycharmProjects/PythonProject/.venv/lib/python3.12/site-packages/unittestreport/core/dataDriver.py", line 73, in wrapper
+    with open(file_path, "r", encoding="utf-8") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: ''
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/cjh/PycharmProjects/PythonProject/MallApi/testcases/settlement.py", line 9, in <module>
+    class Sett(unittest.TestCase):
+  File "/home/cjh/PycharmProjects/PythonProject/MallApi/testcases/settlement.py", line 14, in Sett
+    @yaml_data('')
+     ^^^^^^^^^^^^^
+  File "/home/cjh/PycharmProjects/PythonProject/.venv/lib/python3.12/site-packages/unittestreport/core/dataDriver.py", line 76, in wrapper
+    with open(file_path, "r", encoding="gbk") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: ''
+
+</pre>
+                        
+
+                            <pre>settlement (unittest.loader._FailedTest.settlement)执行——>【错误Error】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>5</td>
+                    <td class="_FailedTest">_FailedTest</td>
+                    <td>shopping</td>
+                    <td>None</td>
+                    <td>0.000136s</td>
+                    
+                        <td class="text-danger">错误</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "/usr/lib/python3.12/unittest/case.py", line 58, in testPartExecutor
+    yield
+</pre>
+                        
+
+                            <pre>  File "/usr/lib/python3.12/unittest/case.py", line 634, in run
+    self._callTestMethod(testMethod)
+</pre>
+                        
+
+                            <pre>  File "/usr/lib/python3.12/unittest/case.py", line 589, in _callTestMethod
+    if method() is not None:
+       ^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "/usr/lib/python3.12/unittest/loader.py", line 33, in testFailure
+    raise self._exception
+</pre>
+                        
+
+                            <pre>ImportError: Failed to import test module: shopping
+Traceback (most recent call last):
+  File "/home/cjh/PycharmProjects/PythonProject/.venv/lib/python3.12/site-packages/unittestreport/core/dataDriver.py", line 73, in wrapper
+    with open(file_path, "r", encoding="utf-8") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\python\\pythonBase\\MallApi\\data\\add_to_cart.yaml'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/cjh/PycharmProjects/PythonProject/MallApi/testcases/shopping.py", line 10, in <module>
+    class Shopping(unittest.TestCase):
+  File "/home/cjh/PycharmProjects/PythonProject/MallApi/testcases/shopping.py", line 15, in Shopping
+    @yaml_data(r"D:\python\pythonBase\MallApi\data\add_to_cart.yaml")
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cjh/PycharmProjects/PythonProject/.venv/lib/python3.12/site-packages/unittestreport/core/dataDriver.py", line 76, in wrapper
+    with open(file_path, "r", encoding="gbk") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\python\\pythonBase\\MallApi\\data\\add_to_cart.yaml'
+
+</pre>
+                        
+
+                            <pre>shopping (unittest.loader._FailedTest.shopping)执行——>【错误Error】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>6</td>
+                    <td class="_FailedTest">_FailedTest</td>
+                    <td>test_add_to_cart</td>
+                    <td>None</td>
+                    <td>0.000147s</td>
+                    
+                        <td class="text-danger">错误</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "/usr/lib/python3.12/unittest/case.py", line 58, in testPartExecutor
+    yield
+</pre>
+                        
+
+                            <pre>  File "/usr/lib/python3.12/unittest/case.py", line 634, in run
+    self._callTestMethod(testMethod)
+</pre>
+                        
+
+                            <pre>  File "/usr/lib/python3.12/unittest/case.py", line 589, in _callTestMethod
+    if method() is not None:
+       ^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "/usr/lib/python3.12/unittest/loader.py", line 33, in testFailure
+    raise self._exception
+</pre>
+                        
+
+                            <pre>ImportError: Failed to import test module: test_add_to_cart
+Traceback (most recent call last):
+  File "/home/cjh/PycharmProjects/PythonProject/.venv/lib/python3.12/site-packages/unittestreport/core/dataDriver.py", line 73, in wrapper
+    with open(file_path, "r", encoding="utf-8") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\PythonProject\\109\\MallApi\\data\\add_to_cart.yaml'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/cjh/PycharmProjects/PythonProject/MallApi/testcases/test_add_to_cart.py", line 15, in <module>
+    class AddToCart(unittest.TestCase):
+  File "/home/cjh/PycharmProjects/PythonProject/MallApi/testcases/test_add_to_cart.py", line 21, in AddToCart
+    @yaml_data(r"D:\PythonProject\109\MallApi\data\add_to_cart.yaml")
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cjh/PycharmProjects/PythonProject/.venv/lib/python3.12/site-packages/unittestreport/core/dataDriver.py", line 76, in wrapper
+    with open(file_path, "r", encoding="gbk") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\PythonProject\\109\\MallApi\\data\\add_to_cart.yaml'
+
+</pre>
+                        
+
+                            <pre>test_add_to_cart (unittest.loader._FailedTest.test_add_to_cart)执行——>【错误Error】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>7</td>
+                    <td class="_FailedTest">_FailedTest</td>
+                    <td>test_login</td>
+                    <td>None</td>
+                    <td>0.00013s</td>
+                    
+                        <td class="text-danger">错误</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "/usr/lib/python3.12/unittest/case.py", line 58, in testPartExecutor
+    yield
+</pre>
+                        
+
+                            <pre>  File "/usr/lib/python3.12/unittest/case.py", line 634, in run
+    self._callTestMethod(testMethod)
+</pre>
+                        
+
+                            <pre>  File "/usr/lib/python3.12/unittest/case.py", line 589, in _callTestMethod
+    if method() is not None:
+       ^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "/usr/lib/python3.12/unittest/loader.py", line 33, in testFailure
+    raise self._exception
+</pre>
+                        
+
+                            <pre>ImportError: Failed to import test module: test_login
+Traceback (most recent call last):
+  File "/home/cjh/PycharmProjects/PythonProject/.venv/lib/python3.12/site-packages/unittestreport/core/dataDriver.py", line 73, in wrapper
+    with open(file_path, "r", encoding="utf-8") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\python\\pythonBase\\MallApi\\data\\login.yaml'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/cjh/PycharmProjects/PythonProject/MallApi/testcases/test_login.py", line 8, in <module>
+    class Demo(unittest.TestCase):
+  File "/home/cjh/PycharmProjects/PythonProject/MallApi/testcases/test_login.py", line 12, in Demo
+    @yaml_data(r"D:\python\pythonBase\MallApi\data\login.yaml")
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cjh/PycharmProjects/PythonProject/.venv/lib/python3.12/site-packages/unittestreport/core/dataDriver.py", line 76, in wrapper
+    with open(file_path, "r", encoding="gbk") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\python\\pythonBase\\MallApi\\data\\login.yaml'
+
+</pre>
+                        
+
+                            <pre>test_login (unittest.loader._FailedTest.test_login)执行——>【错误Error】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>8</td>
+                    <td class="_FailedTest">_FailedTest</td>
+                    <td>test_query_get</td>
+                    <td>None</td>
+                    <td>0.000131s</td>
+                    
+                        <td class="text-danger">错误</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "/usr/lib/python3.12/unittest/case.py", line 58, in testPartExecutor
+    yield
+</pre>
+                        
+
+                            <pre>  File "/usr/lib/python3.12/unittest/case.py", line 634, in run
+    self._callTestMethod(testMethod)
+</pre>
+                        
+
+                            <pre>  File "/usr/lib/python3.12/unittest/case.py", line 589, in _callTestMethod
+    if method() is not None:
+       ^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "/usr/lib/python3.12/unittest/loader.py", line 33, in testFailure
+    raise self._exception
+</pre>
+                        
+
+                            <pre>ImportError: Failed to import test module: test_query_get
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/cjh/PycharmProjects/PythonProject/MallApi/testcases/test_query_get.py", line 5, in <module>
+    from MallApi.cookie.login_token import toke
+  File "/home/cjh/PycharmProjects/PythonProject/MallApi/cookie/login_token.py", line 2, in <module>
+    import pymysql
+ModuleNotFoundError: No module named 'pymysql'
+
+</pre>
+                        
+
+                            <pre>test_query_get (unittest.loader._FailedTest.test_query_get)执行——>【错误Error】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>9</td>
+                    <td class="_FailedTest">_FailedTest</td>
+                    <td>test_token</td>
+                    <td>None</td>
+                    <td>0.000129s</td>
+                    
+                        <td class="text-danger">错误</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "/usr/lib/python3.12/unittest/case.py", line 58, in testPartExecutor
+    yield
+</pre>
+                        
+
+                            <pre>  File "/usr/lib/python3.12/unittest/case.py", line 634, in run
+    self._callTestMethod(testMethod)
+</pre>
+                        
+
+                            <pre>  File "/usr/lib/python3.12/unittest/case.py", line 589, in _callTestMethod
+    if method() is not None:
+       ^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "/usr/lib/python3.12/unittest/loader.py", line 33, in testFailure
+    raise self._exception
+</pre>
+                        
+
+                            <pre>ImportError: Failed to import test module: test_token
+Traceback (most recent call last):
+  File "/home/cjh/PycharmProjects/PythonProject/.venv/lib/python3.12/site-packages/unittestreport/core/dataDriver.py", line 73, in wrapper
+    with open(file_path, "r", encoding="utf-8") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\python\\pythonBase\\MallApi\\data\\aftoken.yaml'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/cjh/PycharmProjects/PythonProject/MallApi/testcases/test_token.py", line 8, in <module>
+    class Token(unittest.TestCase):
+  File "/home/cjh/PycharmProjects/PythonProject/MallApi/testcases/test_token.py", line 15, in Token
+    @yaml_data(r"D:\python\pythonBase\MallApi\data\aftoken.yaml")
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cjh/PycharmProjects/PythonProject/.venv/lib/python3.12/site-packages/unittestreport/core/dataDriver.py", line 76, in wrapper
+    with open(file_path, "r", encoding="gbk") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\python\\pythonBase\\MallApi\\data\\aftoken.yaml'
+
+</pre>
+                        
+
+                            <pre>test_token (unittest.loader._FailedTest.test_token)执行——>【错误Error】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+
+            </tbody>
+        </table>
+    </div>
+
+    <div style="height: 200px"></div>
+</div>
+
+
+<script>
+    var tbodyTr = $('tbody tr');
+    var testResult = $("#testResult");
+    var testClass = $("#testClass");
+    <!--    用例执行详细信息显示切换-->
+    $(".btn_info").click(function () {
+        $(this).parent().parent().next().toggle();
+
+    });
+    // 当选择用例类之后触发
+    testClass.change(function () {
+        var cls = $(this).val();
+        var res = testResult.val();
+        elementDisplay(cls, res);
+        sort()
+    });
+    testResult.change(function () {
+        var res = $(this).val();
+        var cls = testClass.val();
+        elementDisplay(cls, res);
+        sort()
+    });
+
+    function elementDisplay(cls, res) {
+        // 用例数据的显示
+        if (cls === "所有") {
+            if (res === "所有") {
+                tbodyTr.has('button').show();
+            } else if (res === '成功') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.text-success').show()
+
+            } else if (res === '失败') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.text-warning').show()
+
+            } else if (res === '错误') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.text-danger').show()
+
+            } else if (res === '跳过') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.text-info').show()
+            }
+        } else {
+            if (res === "所有") {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.' + cls + '').show()
+            } else if (res === '成功') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.' + cls + '').has('.text-success').show()
+            } else if (res === '失败') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.' + cls + '').has('.text-warning').show()
+            } else if (res === '错误') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.' + cls + '').has('.text-danger').show()
+            } else if (res === '跳过') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.' + cls + '').has('.text-info').show()
+            }
+        }
+    }
+
+    function sort() {
+        //重新排列显示序号
+        // 选择所有可以见的tr
+        var visibleTr = tbodyTr.filter(":visible");
+
+        visibleTr.each(function (index, element) {
+            element.firstElementChild.innerHTML = index + 1;
+
+        })
+
+    }
+
+
+</script>
+
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('char'));
+    var myChart2 = echarts.init(document.getElementById('char2'));
+    // 指定图表的配置项和数据
+    option = {
+        color: ['#00a10a', '#ddb518', 'rgba(204,46,41,0.73)', '#85898c'],
+        tooltip: {
+            trigger: 'item',
+            formatter: '{a} <br/>{b}: {c} ({d}%)'
+        },
+        legend: {
+            orient: 'vertical',
+            left: 10,
+            data: ['通过', '失败', '错误', '跳过']
+        },
+        series: [
+            {
+                name: '测试结果',
+                type: 'pie',
+                radius: ['50%', '70%'],
+                avoidLabelOverlap: false,
+                label: {
+                    show: false,
+                    position: 'center'
+                },
+                emphasis: {
+                    label: {
+                        show: true,
+                        fontSize: '30',
+                        fontWeight: 'bold'
+                    }
+                },
+                labelLine: {
+                    show: false
+                },
+                data: [
+                    {value: 0, name: '通过'},
+                    {value: 0, name: '失败'},
+                    {value: 9, name: '错误'},
+                    {value: 0, name: '跳过'}
+                ]
+            }
+        ]
+    };
+    option2 = {
+        tooltip: {
+            formatter: '{a} <br/>{b} : {c}%'
+        },
+        toolbox: {
+            feature: {
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        series: [
+            {
+                name: '测试结果',
+                type: 'gauge',
+                detail: {formatter: '0.00%'},
+                data: [{value: '0.00', name: '用例通过率'}],
+                axisLine: {
+                    lineStyle: {
+                        color: [
+                            [0.2, '#c20000'],
+                            [0.8, '#ddb518'],
+                            [1, '#00a10a']]
+                    }
+                }
+            }
+        ]
+    };
+
+
+    myChart2.setOption(option2);
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+
+
+</body>
+</html>

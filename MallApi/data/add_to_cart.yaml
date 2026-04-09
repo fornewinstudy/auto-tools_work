@@ -1,0 +1,43 @@
+- title: 加入购物车，加入成功
+  num: 1
+  expect_val: '"error":0'
+
+#- title: 库存不足加入购物车，返回提示信息
+#  num: 199999
+#  expect_val: \u5bf9\u4e0d\u8d77\uff0c\u8be5\u5546\u54c1\u5df2\u7ecf\u5e93\u5b58\u4e0d\u8db3\u6682\u505c\u9500\u552e\u3002\n
+
+#- title: 加入购物车数量为0，返回提示信息
+#  add_to_cart_data: {
+#    "goods": '{"quick":1,"spec":[],"goods_id":16,"number":"0","parent":0}'
+#  }
+#  expect_val: \u5bf9\u4e0d\u8d77\uff0c\u60a8\u8f93\u5165\u4e86\u4e00\u4e2a\u975e\u6cd5\u7684\u5546\u54c1\u6570\u91cf\u3002
+#
+#- title: 加入购物车数量为空，返回提示信息
+#  add_to_cart_data: {
+#    "goods": '{"quick":1,"spec":[],"goods_id":16,"number":"","parent":0}'
+#  }
+#  expect_val: \u5546\u54c1\u6570\u91cf\u4e0d\u80fd\u4e3a\u7a7a
+#
+#- title: 加入购物车数量包含特殊字符，返回提示信息
+#  add_to_cart_data: {
+#    "goods": '{"quick":1,"spec":[],"goods_id":16,"number":"1abc","parent":0}'
+#  }
+#  expect_val: \u8bf7\u60a8\u8f93\u5165\u6b63\u786e\u7684\u8d2d\u4e70\u6570\u91cf!
+#
+#- title: 加入购物车数量为负数，返回提示信息
+#  add_to_cart_data: {
+#    "goods": '{"quick":1,"spec":[],"goods_id":16,"number":"-1","parent":0}'
+#  }
+#  expect_val: \u5bf9\u4e0d\u8d77\uff0c\u60a8\u8f93\u5165\u4e86\u4e00\u4e2a\u975e\u6cd5\u7684\u5546\u54c1\u6570\u91cf\u3002
+#
+#- title: 加入购物车数量为浮点数，返回提示信息
+#  add_to_cart_data: {
+#    "goods": '{"quick":1,"spec":[],"goods_id":16,"number":"1.3","parent":0}'
+#  }
+#  expect_val: \u5bf9\u4e0d\u8d77\uff0c\u60a8\u8f93\u5165\u4e86\u4e00\u4e2a\u975e\u6cd5\u7684\u5546\u54c1\u6570\u91cf\u3002
+#
+#- title: 商品id不存在加入购物车失败
+#  add_to_cart_data: {
+#    "goods": '{"quick":1,"spec":[],"goods_id":160,"number":"1","parent":0}'
+#  }
+#  expect_val: \u5bf9\u4e0d\u8d77\uff0c\u6307\u5b9a\u7684\u5546\u54c1\u4e0d\u5b58\u5728

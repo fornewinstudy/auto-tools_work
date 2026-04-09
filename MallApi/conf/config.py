@@ -1,0 +1,7 @@
+lion_url = "http://www.mall.com/user.php"
+leaving_url = "http://www.mall.com/user.php"
+addres_url = "http://www.mall.com/user.php"
+shopping_url = "http://www.mall.com/flow.php?step=add_to_cart"
+query_url = "http://www.mall.com/search.php?keywords=%E6%B0%B4%E6%9E%9C&dataBi=k1"
+token_url = "http://appapi.fecshop.com/v1/account/login"
+query_get_url = "http://appapi.fecshop.com/v1/article/list"

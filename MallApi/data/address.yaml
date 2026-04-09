@@ -1,0 +1,79 @@
+- title: 添加收货地址成功
+  addres_data: {
+    "country": "1",
+    "province": "6",
+    "city": "77",
+    "district": "709",
+    "consignee": "张三",
+    "email": "abcde@qq.com",
+    "address": "龙岗坂田",
+    "mobile": "13033453189",
+    "submit": "新增收货地址",
+    "act": "act_edit_address",
+
+  }
+  expect_val: 您的收货地址信息已成功更新！
+
+- title: 收货人姓名为空，添加失败
+  addres_data: {
+    "country": "1",
+    "province": "6",
+    "city": "77",
+    "district": "709",
+    "consignee": "",
+    "email": "abcde@qq.com",
+    "address": "龙岗坂田",
+    "mobile": "13033453189",
+    "submit": "新增收货地址",
+    "act": "act_edit_address",
+
+  }
+  expect_val: 收货人姓名不能为空！
+
+- title: 详细地址为空，添加失败
+  addres_data: {
+    "country": "1",
+    "province": "6",
+    "city": "77",
+    "district": "709",
+    "consignee": "张三",
+    "email": "abcde@qq.com",
+    "address": "",
+    "mobile": "13033453189",
+    "submit": "新增收货地址",
+    "act": "act_edit_address",
+
+  }
+  expect_val: 收货人的详细地址不能为空！
+
+- title: 电子邮件为空，添加失败
+  addres_data: {
+    "country": "1",
+    "province": "6",
+    "city": "77",
+    "district": "709",
+    "consignee": "张三",
+    "email": "",
+    "address": "龙岗坂田",
+    "mobile": "13033453189",
+    "submit": "新增收货地址",
+    "act": "act_edit_address",
+
+  }
+  expect_val: 您输入的邮件地址不是一个合法的邮件地址。
+
+- title: 手机为空，添加失败
+  addres_data: {
+    "country": "1",
+    "province": "6",
+    "city": "77",
+    "district": "709",
+    "consignee": "张三",
+    "email": "abcde@qq.com",
+    "address": "龙岗坂田",
+    "mobile": "",
+    "submit": "新增收货地址",
+    "act": "act_edit_address",
+
+  }
+  expect_val: 手机号码不是合法号码

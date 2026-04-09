@@ -1,0 +1,6 @@
+- title: 查询商品列表，查询成功
+  param: {
+           "page": 1,
+           'password':"admin123"
+  }
+  expect_val:  success
