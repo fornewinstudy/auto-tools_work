@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试报告</title>
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src=" https://cdn.staticfile.org/jquery/2.0.0/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/echarts/5.1.2/echarts.min.js"></script>
+    <!--    页面样式-->
+    <style type="text/css">
+        /*标题样式*/
+        .title {
+            width: auto;
+            height: 60px;
+            text-align: center;
+            font: bolder 38px/60px "Microsoft YaHei UI";
+        }
+
+        /*汇总信息样式*/
+        .summary {
+            width: 90%;
+            position: absolute;
+            top: 120px;
+            margin-left: 5%;
+
+        }
+
+        .text-left {
+            font: bolder 20px/30px "Microsoft YaHei UI";
+        }
+
+        .left {
+            width: 50%;
+            float: left;
+
+        }
+
+        .right {
+            width: 50%;
+            float: right;
+
+        }
+
+        .desc {
+            float: left;
+            width: 100%;
+        }
+
+        .list-group-item span {
+            font: normal 16px/38px "Microsoft YaHei UI";
+            padding: 30px;
+
+        }
+
+        .list-group-item {
+            position: relative;
+            display: block;
+            padding: .4rem 1.25rem;
+            background-color: #fff;
+            border: 1px solid rgba(0, 0, 0, .125);
+        }
+
+        /* 执行信息样式   */
+        .test_info {
+            width: 90%;
+            position: absolute;
+            top: 900px;
+            margin-left: 5%;
+
+            color: #28a745 !important;
+        }
+
+        .table td, th {
+            border: solid 2px rgba(9, 122, 51, 0.11) !important;
+            padding: 0;
+            line-height: 40px;
+            text-align: center;
+
+        }
+
+
+        select {
+            border: 0;
+            padding: 0;
+            margin: 0;
+            height: 2em;
+            width: 8em;
+            margin-left: 2em;
+        }
+
+        option {
+            text-align: center;
+            height: 36px;
+            font: none 18px/36px "Microsoft YaHei UI";
+            color: #28a745 !important;
+        }
+
+        .test_log {
+            background: rgba(163, 171, 189, 0.15);
+            width: 100%;
+            height: 50px;
+            border-top: none;
+            border-bottom: none;
+            display: none;
+            text-align: left;
+        }
+
+        .test_log td {
+            text-align: left;
+            height: 30px;
+            margin: 0;
+            padding-left: 3em;
+            padding-right:3em;
+            font: none 18px/24px "Microsoft YaHei UI";
+            color: #9e141a;
+        }
+
+        pre {
+            margin: 0;
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+            line-height: 22px;
+            font-size: 14px
+        }
+
+        /*    测试图表显示*/
+        .char {
+            width: 90%;
+            position: absolute;
+            top: 450px;
+            margin-left: 5%;
+            color: #28a745 !important;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<!--报告标题-->
+<div class="title text-success">
+    <div class="shadow-lg p-3 mb-5 bg-white rounded">生鲜超市测试报告</div>
+</div>
+
+<!--汇总信息-->
+<div class="summary">
+    <p class="text-left text-success">测试结果汇总</p>
+    <div class="left">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">测试人员</button>
+                <span class="text-dark">潘璐璐</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">开始时间</button>
+                <span class="text-dark">2026-01-30 17:36:57</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">执行时间</button>
+                <span class="text-dark">2.68 S</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">用例总数</button>
+                <span class="text-dark">17</span>
+            </li>
+
+
+        </ul>
+    </div>
+    <div class="right">
+        <ul class="list-group">
+
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">成功用例</button>
+                <span class="text-success">11</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-warning">失败用例</button>
+                <span class="text-warning">6</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-danger">错误用例</button>
+                <span class="text-danger">0</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-secondary">跳过用例</button>
+                <span class="text-secondary">0</span>
+            </li>
+        </ul>
+    </div>
+    <div class="desc">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">描述信息</button>
+                <span class="text-secondary">生鲜超市接口自动化测试报告</span>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
+
+<!--测试图表-->
+<div class="char">
+    <p class="text-left text-success">图表展示</p>
+    <div id="char2" style="width: 49%;height: 400px;float: left"></div>
+    <div id="char" style="width: 49%;height: 400px ;float: left"></div>
+</div>
+
+<!--详细信息-->
+<div class="test_info">
+
+    <p class="text-left text-success">详细信息</p>
+    <div class="table_data">
+
+        <table class="table">
+            <thead class="bg-success text-light">
+            <tr>
+                <th scope="col" style="width: 5%;padding: 0">编号</th>
+                <th scope="col" style="width: 20%;padding: 0">
+                    <span>测试类</span>
+                    <select id="testClass">
+                        <option>所有</option>
+                        
+                            <option>LeaveMsq</option>
+                        
+                            <option>Login</option>
+                        
+                    </select>
+
+                </th>
+
+                <th scope="col" style="width: 15%;padding: 0">测试方法</th>
+                <th scope="col" style="width: 20%;padding: 0">用例描述</th>
+                <th scope="col" style="width: 15%;padding: 0">执行时间</th>
+                <th scope="col" style="width: 20%;padding: 0">
+
+                    <span>执行结果</span>
+                    <select id="testResult">
+                        <option>所有</option>
+                        <option class="text-success">成功</option>
+                        <option class="text-warning">失败</option>
+                        <option class="text-danger">错误</option>
+                        <option class="text-info">跳过</option>
+                    </select>
+
+                </th>
+                <th scope="col" style="width: 10%;padding: 0">详细信息</th>
+            </tr>
+            </thead>
+            <tbody>
+            
+                <tr>
+                    <td>1</td>
+                    <td class="LeaveMsq">LeaveMsq</td>
+                    <td>test_leave_msg_001</td>
+                    <td>发表留言，发表成功</td>
+                    <td>0.187s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>test_leave_msg_001 (test_leave_msg.LeaveMsq.test_leave_msg_001)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>2</td>
+                    <td class="LeaveMsq">LeaveMsq</td>
+                    <td>test_leave_msg_002</td>
+                    <td>发表投诉，发表成功</td>
+                    <td>0.189s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>test_leave_msg_002 (test_leave_msg.LeaveMsq.test_leave_msg_002)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>3</td>
+                    <td class="LeaveMsq">LeaveMsq</td>
+                    <td>test_leave_msg_003</td>
+                    <td>发表询问，发表成功</td>
+                    <td>0.205s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>test_leave_msg_003 (test_leave_msg.LeaveMsq.test_leave_msg_003)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>4</td>
+                    <td class="LeaveMsq">LeaveMsq</td>
+                    <td>test_leave_msg_004</td>
+                    <td>发表售后，发表成功</td>
+                    <td>0.181s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>test_leave_msg_004 (test_leave_msg.LeaveMsq.test_leave_msg_004)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>5</td>
+                    <td class="LeaveMsq">LeaveMsq</td>
+                    <td>test_leave_msg_005</td>
+                    <td>发表求购，发表成功</td>
+                    <td>0.206s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>test_leave_msg_005 (test_leave_msg.LeaveMsq.test_leave_msg_005)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>6</td>
+                    <td class="LeaveMsq">LeaveMsq</td>
+                    <td>test_leave_msg_006</td>
+                    <td>留言类型传入特殊字符，发表留言失败</td>
+                    <td>0.187s</td>
+                    
+                        <td class="text-warning">失败</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>test_leave_msg_006 (test_leave_msg.LeaveMsq.test_leave_msg_006)执行——>【失败】
+</pre>
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "D:\Program Files\Python312\Lib\unittest\case.py", line 58, in testPartExecutor
+    yield
+</pre>
+                        
+
+                            <pre>  File "D:\Program Files\Python312\Lib\unittest\case.py", line 634, in run
+    self._callTestMethod(testMethod)
+</pre>
+                        
+
+                            <pre>  File "D:\Program Files\Python312\Lib\unittest\case.py", line 589, in _callTestMethod
+    if method() is not None:
+       ^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "D:\Program Files\Python312\Lib\site-packages\unittestreport\core\dataDriver.py", line 19, in wrapper
+    return func(self, params, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "D:\PythonProject\109\MallApi\testcases\test_leave_msg.py", line 22, in test_leave_msg
+    self.assertIn(yaml_data["expect_val"],resp.text)
+</pre>
+                        
+
+                            <pre>AssertionError: '留言失败' not found in '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">\r\n<html xmlns="http://www.w3.org/1999/xhtml">\r\n<head>\r\n<meta name="Generator" content="ECSHOP v2.7.3" />\r\n<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />\n<meta name="Keywords" content="" />\r\n<meta name="Description" content="" />\r\n<meta name="Description" content="" />\r\n\r\n\r\n<title>系统提示_商城演示站</title>\r\n\r\n\r\n\r\n<link rel="shortcut icon" href="favicon.ico" />\r\n<link rel="icon" href="animated_favicon.gif" type="image/gif" />\r\n<link href="themes/lizi/style.css" rel="stylesheet" type="text/css" />\r\n\r\n<script type="text/javascript" src="js/common.js"></script><style type="text/css">\r\np a {\r\n\tcolor: #006acd;\r\n\ttext-decoration: underline;\r\n}\r\n</style>\r\n</head><body>\r\n<script type="text/javascript" src="themes/lizi/js/jquery-1.9.1.min.js"></script>\r\n<script type="text/javascript" src="themes/lizi/js/jquery.json.js"></script>\r\n<script type="text/javascript" src="themes/lizi/js/transport_jquery.js"></script>\r\n<script type="text/javascript" src="themes/lizi/js/utils.js"></script>\r\n<script type="text/javascript" src="themes/lizi/js/jquery.SuperSlide.js"></script>\r\n<script type="text/javascript" src="themes/lizi/js/lizi_common.js"></script>\r\n\r\n\r\n<style>\r\n\r\n.topimg{width:100%; height:50px; margin:0 auto}\r\n.topimg a img{width:100%; height:50px; margin:0 auto; border:0px}\r\n</style>\r\n<div class="topimg">\r\n\t\t  \r\n\t   <a href=\'affiche.php?ad_id=10&uri=\'><img src=\'data/afficheimg/1460440720430642585.jpg\' width=\'1024\' height=\'50\' /></a>\t</div>\r\n<div id="header" class="new_header">\r\n  <div class="hd_bar">\r\n    <div class="bd_bar_bd cle">\r\n      <ul class="welcome">\r\n        <li><a id="favorite_wb" href="javascript:;" rel="nofollow">收藏商城演示站</a></li>\r\n\t\t<li id="ECS_MEMBERZONE"><a href="user.php" class="">qqq</a>&nbsp;[<a href="user.php?act=logout">退出</a>]</li>\r\n        \r\n            \r\n</li>\r\n      </ul>\r\n      <ul id="userinfo-bar">\r\n        <li class="more-menu"> <a href="user.php">会员中心</a><i class="iconfont arrow">&#8193;</i>\r\n          <div class="more-bd">\r\n            <div class="list"> <a href="user.php?act=order_list">我的订单</a> <a href="user.php?act=comment_list">我的评价</a> <a href="user.php?act=account_log">我的余额</a> <a href="user.php?act=bonus">我的红包</a> <a href="user.php?act=collection_list">我的收藏</a> <a href="user.php?act=address_list" class="last">修改收货地址</a> </div>\r\n          </div>\r\n        </li>\r\n        <li><a href="mobile/"><i class="iconfont vipico"></i>手机版</a></li>\r\n      </ul>\r\n    </div>\r\n  </div>\r\n  <script type="text/javascript">\r\n    \r\n    <!--\r\n    function checkSearchForm()\r\n    {\r\n        if(document.getElementById(\'keyword\').value)\r\n        {\r\n            return true;\r\n        }\r\n        else\r\n        {\r\n            alert("请输入搜索关键词！");\r\n            return false;\r\n        }\r\n    }\r\n    -->\r\n    \r\n    </script>\r\n  <div class="hd_main cle">\r\n    <div class="logo"> <a href="./" class="lizi_logo"><img src="themes/lizi/images/logo.gif" alt="商城演示站"/></a> \r\n    </div>\r\n    <div class="search_box">\r\n      <form action="search.php" method="get" id="searchForm" name="searchForm" onSubmit="return checkSearchForm()">\r\n        <input class="sea_input" type="text" name="keywords" id="keyword" value="" autocomplete="off">\r\n        <input type="hidden" value="k1" name="dataBi">\r\n        <button type="submit" class="sea_submit">搜索</button>\r\n      </form>\r\n    </div>\r\n        <div class="head_search_hot"> <span>热搜榜：</span>  <a href="search.php?keywords=%E6%B0%B4%E6%9E%9C" target="_blank">水果</a>  <a href="search.php?keywords=%E7%89%9B%E5%A5%B6" target="_blank">牛奶</a>  <a href="search.php?keywords=%E6%B5%8B%E8%AF%95" target="_blank">测试</a>  <a href="search.php?keywords=%E5%A8%81%E5%A3%AB%E5%BF%8C" target="_blank">威士忌</a>  <a href="search.php?keywords=%E8%94%AC%E8%8F%9C" target="_blank">蔬菜</a>  </div>\r\n        <div class="intro">\r\n      <ul>\r\n        <li class="no1"><a href="javascript:void(0);" target="_blank">\r\n          <h4>正品保障</h4>\r\n          <p>100%正品低价</p>\r\n          </a></li>\r\n        <li class="no2"><a href="javascript:void(0);" target="_blank">\r\n          <h4>30天退换货</h4>\r\n          <p>购物有保障</p>\r\n          </a></li>\r\n        <li class="no3"><a href="javascript:void(0);" target="_blank">\r\n          <h4>满99就包邮</h4>\r\n          <p>闪电发货</p>\r\n          </a></li>\r\n      </ul>\r\n    </div>\r\n  </div>\r\n  <div class="hd_nav">\r\n    <div class="hd_nav_bd cle">\r\n      <div class="main_nav" id="main_nav">\r\n        <div class="main_nav_link"> <a href="javascript:;">全部商品分类</a> <i class="iconfont">\ue62e</i> </div>\r\n        <div class="main_cata" id="J_mainCata" style="opacity: 0; display: none;">\r\n          <ul>\r\n                        <li class="first">\r\n              <h3 style="background:url(data/cat_ico/1449088788518670880.png) 20px center no-repeat;"><a href="category.php?id=2">生鲜食品</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449088848823694266.png) 20px center no-repeat;"><a href="category.php?id=1">酒水饮料</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449088901458193225.png) 20px center no-repeat;"><a href="category.php?id=5">粮油副食</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449088957941770398.png) 20px center no-repeat;"><a href="category.php?id=11">蔬菜水果</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449089137240745101.png) 20px center no-repeat;"><a href="category.php?id=9">休闲食品</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449089235904530709.png) 20px center no-repeat;"><a href="category.php?id=12">奶类食品</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449089297229428349.png) 20px center no-repeat;"><a href="category.php?id=6">天然干货</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449089358084135937.png) 20px center no-repeat;"><a href="category.php?id=7">精选茗茶</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/) 20px center no-repeat;"><a href="category.php?id=130">电脑</a></h3>\r\n            </li>\r\n                      </ul>\r\n        </div>\r\n       \r\n     \r\n        <div class="J_subCata" id="J_subCata" style="opacity: 0; left: 213px; top: 35px;">\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=15">精品肉类</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=64">羊肉</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=65">禽类</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=66">猪肉</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=67">牛肉</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=16">海鲜水产</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=68">参鲍</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=69">鱼</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=70">虾</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=71">蟹/贝</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=17">蛋制品</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=72">松花蛋/咸鸭蛋</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=73">鸡蛋</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=18">叶菜类</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=74">生菜</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=75">菠菜</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=76">圆椒</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=77">西兰花</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=19">根茎类</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=20">茄果类</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=21">菌菇类</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=22">进口生鲜</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=23">白酒</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=83">五粮液</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=84">泸州老窖</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=85">茅台</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=24">葡萄酒</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=25">洋酒</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=26">啤酒</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=27">其他酒品</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=78">其他品牌</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=79">黄酒</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=80">养生酒</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=28">饮料/水</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=29">红酒</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=81">白兰地</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=82">威士忌</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=30">食用油</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=86">其他食用油</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=87">菜仔油</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=88">花生油</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=89">橄榄油</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=90">礼盒</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=31">米面杂粮</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=91">面粉/面条</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=92">大米</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=93">意大利面</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=32">厨房调料</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=94">调味油/汁</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=95">酱油/醋</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=33">南北干货</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=34">方便速食</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=35">调味品</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=41">有机蔬菜</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=96">西红柿</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=97">韭菜</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=98">青菜</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=42">精选蔬菜</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=99">甘蓝</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=100">胡萝卜</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=101">黄瓜</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=43">进口水果</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=102">火龙果</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=103">菠萝蜜</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=104">奇异果</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=44">国产水果</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=105">水果礼盒</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=106">苹果</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=107">雪梨</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=36">休闲零食</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=108">果冻</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=109">枣类</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=110">蜜饯</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=111">肉类零食</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=112">坚果炒货</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=37">糖果</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=113">创意喜糖</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=114">口香糖</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=115">软糖</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=116">棒棒糖</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=38">巧克力</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=117">夹心巧克力</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=118">白巧克力</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=119">松露巧克力</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=120">黑巧克力</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=39">肉干肉脯/豆干</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=121">牛肉干</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=122">猪肉脯</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=123">牛肉粒</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=124">猪肉干</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=40">鱿鱼丝/鱼干</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=125">鱿鱼足</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=126">鱿鱼丝</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=127">墨鱼/乌贼</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=128">鱿鱼仔</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=129">鱿鱼片</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=45">进口奶品</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=46">国产奶品</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=47">奶粉</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=48">有机奶</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=49">原料奶</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=53">菌菇类</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=54">腌干海产</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=55">汤料</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=56">豆类</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=57">干菜/菜干</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=58">干果/果干</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=59">豆制品</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=60">腊味</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=61">白茶</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=62">红茶</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=63">绿茶</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n          </div>\r\n                  </div>\r\n      \r\n        \r\n                \r\n\r\n      </div>\r\n      <ul class="sub_nav cle" id="sub_nav">\r\n        <li class="current"><a href="./" rel="nofollow">首页</a>\r\n        </li>\r\n         \r\n        <li><a href="category.php?id=2"  rel="nofollow">生鲜食品</a>\r\n        </li>\r\n         \r\n        <li><a href="category.php?id=1"  rel="nofollow">酒水饮料</a>\r\n        </li>\r\n         \r\n        <li><a href="group_buy.php"  rel="nofollow">团购商品</a>\r\n        </li>\r\n         \r\n        <li><a href="exchange.php"  rel="nofollow">积分兑换</a>\r\n        </li>\r\n         \r\n        <li><a href="category.php?id=130"  rel="nofollow">电脑</a>\r\n        </li>\r\n              </ul>\r\n      <div class="hd_cart" id="ECS_CARTINFO"> \r\n         <a class="tit" href="flow.php"><b class="iconfont">Ɲ</b>去购物车结算<span><i class="iconfont">\ue62c</i></span><em class="num" id="hd_cartnum" style="visibility: visible;">0</em></a>\r\n       <div class="list">\r\n<p class="fail" style="display:none;"><i class="iconfont">ŭ</i><br>\r\n  购物车空啦<br>\r\n  爱Ta，就带Ta来购物车吧</p>\r\n \r\n</div>\r\n<script type="text/javascript">\r\nfunction deleteCartGoods(rec_id)\r\n{\r\n\tAjax.call(\'delete_cart_goods.php\', \'id=\'+rec_id, deleteCartGoodsResponse, \'POST\', \'JSON\');\r\n}\r\n\r\n/**\r\n * 接收返回的信息\r\n */\r\nfunction deleteCartGoodsResponse(res)\r\n{\r\n  if (res.error)\r\n  {\r\n    alert(res.err_msg);\r\n  }\r\n  else\r\n  {\r\n\t  $("#ECS_CARTINFO").html(res.content);\r\n  }\r\n}\r\n</script>       </div>\r\n    </div>\r\n  </div>\r\n  <div class="search_result"></div>\r\n</div>\r\n\r\n<div id="wrapper" class="common_main">\r\n  <div class="here cle" style="padding:10px 20px;"><a href=".">首页</a> <code>&gt;</code> 系统提示</div>\r\n  <div class="box" style="padding:20px;">\r\n   <div class="box_1">\r\n    <h3><span>系统信息</span></h3>\r\n    <div class="boxCenterList RelaArticle" align="center">\r\n      <div style="margin:20px auto;">\r\n      <p style="font-size: 14px; font-weight:bold; color: red;">发表留言成功</p>\r\n        <div class="blank"></div>\r\n                            <p><a href="user.php?act=message_list&order_id=0">返回留言列表</a></p>\r\n                        </div>\r\n    </div>\r\n   </div>\r\n  </div>\r\n</div>\r\n<div class="blank5"></div>\r\n<div id="footer">\r\n  <div class="ft-bg">\r\n    <div class="w-ensure mb20">\r\n    \t<div class="w-main">\r\n        \t<ul>\r\n            \t<li><a target="_blank" href=""><img width="300" height="90" src="themes/lizi/images/ft-svr1.gif"></a></li>\r\n            \t<li><a target="_blank" href=""><img width="300" height="90" src="themes/lizi/images/ft-svr2.gif"></a></li>\r\n            \t<li><a target="_blank" href=""><img width="300" height="90" src="themes/lizi/images/ft-svr3.gif"></a></li>\r\n            \t<li><a target="_blank" href=""><img width="300" height="90" src="themes/lizi/images/ft-svr4.gif"></a></li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n    <div class="ft_main">\r\n      <div class="ft_links">\r\n        <div class="ft_nav"> \r\n           \r\n           \r\n          <a href="article.php?id=1"    \r\n          class="noborder" \r\n           rel="nofollow">免责条款</a> \r\n           \r\n          <a href="article.php?id=2"    rel="nofollow">隐私保护</a> \r\n           \r\n          <a href="article.php?id=3"    rel="nofollow">咨询热点</a> \r\n           \r\n          <a href="article.php?id=4"    rel="nofollow">联系我们</a> \r\n           \r\n          <a href="article.php?id=5"    rel="nofollow">公司简介</a> \r\n           \r\n          <a href="wholesale.php"    rel="nofollow">批发方案</a> \r\n           \r\n          <a href="myship.php"    rel="nofollow">配送方式</a> \r\n           \r\n           \r\n          \r\n        </div>\r\n      </div>\r\n      <div class="ft_txt">\r\n        <p>&copy; 2005-2026 商城演示站 版权所有，并保留所有权利。ICP备案证书号：<a href="http://www.miitbeian.gov.cn" target="_blank" rel="nofollow">蜀ICP12345678号</a></p>\r\n        <p class="ft_contact"> <span>服务时间：09:00-23:00</span>  \r\n          <span class="ft_phone">客服热线: <em>028-87760898</em></span> \r\n          </p>\r\n          \r\n                </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<script>\r\n\t$(function(){\r\n\t\t$(window).scroll(function(){\r\n\t\t\tif($(window).scrollTop()>100){  //距顶部多少像素时，出现返回顶部按钮\r\n\t\t\t\t$("#side-bar .gotop").fadeIn();\t\r\n\t\t\t}\r\n\t\t\telse{\r\n\t\t\t\t$("#side-bar .gotop").hide();\r\n\t\t\t}\r\n\t\t});\r\n\t\t$("#side-bar .gotop").click(function(){\r\n\t\t\t$(\'html,body\').animate({\'scrollTop\':0},500); //返回顶部动画 数值越小时间越短\r\n\t\t});\r\n\t});\r\n</script>\r\n<ul id="side-bar" class="side-pannel side-bar">\r\n      <a href="http://wpa.qq.com/msgrd?v=3&uin=1234567&site=商城演示站&menu=yes" target="_blank" class="kefuqq"></a>\r\n      <a href="http://wpa.qq.com/msgrd?v=3&uin=7654317&site=商城演示站&menu=yes" target="_blank" class="kefuqq"></a>\r\n        <a href="http://amos1.taobao.com/msg.ww?v=2&uid=&s=2" target="_blank" class="kefuww"></a>\r\n    <a href="javascript:;" class="qr weixin"><i></i></a>\r\n  <a href="javascript:;" class="gotop" style="display:none;"></a>\r\n</ul>\r\n\r\n</body>\r\n</html>\r\n'
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>7</td>
+                    <td class="LeaveMsq">LeaveMsq</td>
+                    <td>test_leave_msg_007</td>
+                    <td>留言类型传入不存在的类型，发表留言失败</td>
+                    <td>0.163s</td>
+                    
+                        <td class="text-warning">失败</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>test_leave_msg_007 (test_leave_msg.LeaveMsq.test_leave_msg_007)执行——>【失败】
+</pre>
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "D:\Program Files\Python312\Lib\unittest\case.py", line 58, in testPartExecutor
+    yield
+</pre>
+                        
+
+                            <pre>  File "D:\Program Files\Python312\Lib\unittest\case.py", line 634, in run
+    self._callTestMethod(testMethod)
+</pre>
+                        
+
+                            <pre>  File "D:\Program Files\Python312\Lib\unittest\case.py", line 589, in _callTestMethod
+    if method() is not None:
+       ^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "D:\Program Files\Python312\Lib\site-packages\unittestreport\core\dataDriver.py", line 19, in wrapper
+    return func(self, params, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "D:\PythonProject\109\MallApi\testcases\test_leave_msg.py", line 22, in test_leave_msg
+    self.assertIn(yaml_data["expect_val"],resp.text)
+</pre>
+                        
+
+                            <pre>AssertionError: '留言失败' not found in '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">\r\n<html xmlns="http://www.w3.org/1999/xhtml">\r\n<head>\r\n<meta name="Generator" content="ECSHOP v2.7.3" />\r\n<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />\n<meta name="Keywords" content="" />\r\n<meta name="Description" content="" />\r\n<meta name="Description" content="" />\r\n\r\n\r\n<title>系统提示_商城演示站</title>\r\n\r\n\r\n\r\n<link rel="shortcut icon" href="favicon.ico" />\r\n<link rel="icon" href="animated_favicon.gif" type="image/gif" />\r\n<link href="themes/lizi/style.css" rel="stylesheet" type="text/css" />\r\n\r\n<script type="text/javascript" src="js/common.js"></script><style type="text/css">\r\np a {\r\n\tcolor: #006acd;\r\n\ttext-decoration: underline;\r\n}\r\n</style>\r\n</head><body>\r\n<script type="text/javascript" src="themes/lizi/js/jquery-1.9.1.min.js"></script>\r\n<script type="text/javascript" src="themes/lizi/js/jquery.json.js"></script>\r\n<script type="text/javascript" src="themes/lizi/js/transport_jquery.js"></script>\r\n<script type="text/javascript" src="themes/lizi/js/utils.js"></script>\r\n<script type="text/javascript" src="themes/lizi/js/jquery.SuperSlide.js"></script>\r\n<script type="text/javascript" src="themes/lizi/js/lizi_common.js"></script>\r\n\r\n\r\n<style>\r\n\r\n.topimg{width:100%; height:50px; margin:0 auto}\r\n.topimg a img{width:100%; height:50px; margin:0 auto; border:0px}\r\n</style>\r\n<div class="topimg">\r\n\t\t  \r\n\t   <a href=\'affiche.php?ad_id=10&uri=\'><img src=\'data/afficheimg/1460440720430642585.jpg\' width=\'1024\' height=\'50\' /></a>\t</div>\r\n<div id="header" class="new_header">\r\n  <div class="hd_bar">\r\n    <div class="bd_bar_bd cle">\r\n      <ul class="welcome">\r\n        <li><a id="favorite_wb" href="javascript:;" rel="nofollow">收藏商城演示站</a></li>\r\n\t\t<li id="ECS_MEMBERZONE"><a href="user.php" class="">qqq</a>&nbsp;[<a href="user.php?act=logout">退出</a>]</li>\r\n        \r\n            \r\n</li>\r\n      </ul>\r\n      <ul id="userinfo-bar">\r\n        <li class="more-menu"> <a href="user.php">会员中心</a><i class="iconfont arrow">&#8193;</i>\r\n          <div class="more-bd">\r\n            <div class="list"> <a href="user.php?act=order_list">我的订单</a> <a href="user.php?act=comment_list">我的评价</a> <a href="user.php?act=account_log">我的余额</a> <a href="user.php?act=bonus">我的红包</a> <a href="user.php?act=collection_list">我的收藏</a> <a href="user.php?act=address_list" class="last">修改收货地址</a> </div>\r\n          </div>\r\n        </li>\r\n        <li><a href="mobile/"><i class="iconfont vipico"></i>手机版</a></li>\r\n      </ul>\r\n    </div>\r\n  </div>\r\n  <script type="text/javascript">\r\n    \r\n    <!--\r\n    function checkSearchForm()\r\n    {\r\n        if(document.getElementById(\'keyword\').value)\r\n        {\r\n            return true;\r\n        }\r\n        else\r\n        {\r\n            alert("请输入搜索关键词！");\r\n            return false;\r\n        }\r\n    }\r\n    -->\r\n    \r\n    </script>\r\n  <div class="hd_main cle">\r\n    <div class="logo"> <a href="./" class="lizi_logo"><img src="themes/lizi/images/logo.gif" alt="商城演示站"/></a> \r\n    </div>\r\n    <div class="search_box">\r\n      <form action="search.php" method="get" id="searchForm" name="searchForm" onSubmit="return checkSearchForm()">\r\n        <input class="sea_input" type="text" name="keywords" id="keyword" value="" autocomplete="off">\r\n        <input type="hidden" value="k1" name="dataBi">\r\n        <button type="submit" class="sea_submit">搜索</button>\r\n      </form>\r\n    </div>\r\n        <div class="head_search_hot"> <span>热搜榜：</span>  <a href="search.php?keywords=%E6%B0%B4%E6%9E%9C" target="_blank">水果</a>  <a href="search.php?keywords=%E7%89%9B%E5%A5%B6" target="_blank">牛奶</a>  <a href="search.php?keywords=%E6%B5%8B%E8%AF%95" target="_blank">测试</a>  <a href="search.php?keywords=%E5%A8%81%E5%A3%AB%E5%BF%8C" target="_blank">威士忌</a>  <a href="search.php?keywords=%E8%94%AC%E8%8F%9C" target="_blank">蔬菜</a>  </div>\r\n        <div class="intro">\r\n      <ul>\r\n        <li class="no1"><a href="javascript:void(0);" target="_blank">\r\n          <h4>正品保障</h4>\r\n          <p>100%正品低价</p>\r\n          </a></li>\r\n        <li class="no2"><a href="javascript:void(0);" target="_blank">\r\n          <h4>30天退换货</h4>\r\n          <p>购物有保障</p>\r\n          </a></li>\r\n        <li class="no3"><a href="javascript:void(0);" target="_blank">\r\n          <h4>满99就包邮</h4>\r\n          <p>闪电发货</p>\r\n          </a></li>\r\n      </ul>\r\n    </div>\r\n  </div>\r\n  <div class="hd_nav">\r\n    <div class="hd_nav_bd cle">\r\n      <div class="main_nav" id="main_nav">\r\n        <div class="main_nav_link"> <a href="javascript:;">全部商品分类</a> <i class="iconfont">\ue62e</i> </div>\r\n        <div class="main_cata" id="J_mainCata" style="opacity: 0; display: none;">\r\n          <ul>\r\n                        <li class="first">\r\n              <h3 style="background:url(data/cat_ico/1449088788518670880.png) 20px center no-repeat;"><a href="category.php?id=2">生鲜食品</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449088848823694266.png) 20px center no-repeat;"><a href="category.php?id=1">酒水饮料</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449088901458193225.png) 20px center no-repeat;"><a href="category.php?id=5">粮油副食</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449088957941770398.png) 20px center no-repeat;"><a href="category.php?id=11">蔬菜水果</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449089137240745101.png) 20px center no-repeat;"><a href="category.php?id=9">休闲食品</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449089235904530709.png) 20px center no-repeat;"><a href="category.php?id=12">奶类食品</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449089297229428349.png) 20px center no-repeat;"><a href="category.php?id=6">天然干货</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449089358084135937.png) 20px center no-repeat;"><a href="category.php?id=7">精选茗茶</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/) 20px center no-repeat;"><a href="category.php?id=130">电脑</a></h3>\r\n            </li>\r\n                      </ul>\r\n        </div>\r\n       \r\n     \r\n        <div class="J_subCata" id="J_subCata" style="opacity: 0; left: 213px; top: 35px;">\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=15">精品肉类</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=64">羊肉</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=65">禽类</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=66">猪肉</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=67">牛肉</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=16">海鲜水产</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=68">参鲍</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=69">鱼</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=70">虾</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=71">蟹/贝</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=17">蛋制品</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=72">松花蛋/咸鸭蛋</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=73">鸡蛋</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=18">叶菜类</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=74">生菜</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=75">菠菜</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=76">圆椒</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=77">西兰花</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=19">根茎类</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=20">茄果类</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=21">菌菇类</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=22">进口生鲜</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=23">白酒</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=83">五粮液</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=84">泸州老窖</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=85">茅台</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=24">葡萄酒</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=25">洋酒</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=26">啤酒</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=27">其他酒品</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=78">其他品牌</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=79">黄酒</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=80">养生酒</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=28">饮料/水</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=29">红酒</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=81">白兰地</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=82">威士忌</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=30">食用油</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=86">其他食用油</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=87">菜仔油</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=88">花生油</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=89">橄榄油</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=90">礼盒</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=31">米面杂粮</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=91">面粉/面条</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=92">大米</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=93">意大利面</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=32">厨房调料</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=94">调味油/汁</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=95">酱油/醋</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=33">南北干货</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=34">方便速食</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=35">调味品</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=41">有机蔬菜</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=96">西红柿</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=97">韭菜</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=98">青菜</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=42">精选蔬菜</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=99">甘蓝</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=100">胡萝卜</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=101">黄瓜</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=43">进口水果</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=102">火龙果</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=103">菠萝蜜</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=104">奇异果</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=44">国产水果</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=105">水果礼盒</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=106">苹果</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=107">雪梨</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=36">休闲零食</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=108">果冻</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=109">枣类</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=110">蜜饯</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=111">肉类零食</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=112">坚果炒货</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=37">糖果</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=113">创意喜糖</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=114">口香糖</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=115">软糖</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=116">棒棒糖</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=38">巧克力</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=117">夹心巧克力</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=118">白巧克力</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=119">松露巧克力</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=120">黑巧克力</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=39">肉干肉脯/豆干</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=121">牛肉干</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=122">猪肉脯</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=123">牛肉粒</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=124">猪肉干</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=40">鱿鱼丝/鱼干</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=125">鱿鱼足</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=126">鱿鱼丝</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=127">墨鱼/乌贼</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=128">鱿鱼仔</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=129">鱿鱼片</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=45">进口奶品</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=46">国产奶品</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=47">奶粉</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=48">有机奶</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=49">原料奶</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=53">菌菇类</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=54">腌干海产</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=55">汤料</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=56">豆类</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=57">干菜/菜干</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=58">干果/果干</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=59">豆制品</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=60">腊味</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=61">白茶</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=62">红茶</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=63">绿茶</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n          </div>\r\n                  </div>\r\n      \r\n        \r\n                \r\n\r\n      </div>\r\n      <ul class="sub_nav cle" id="sub_nav">\r\n        <li class="current"><a href="./" rel="nofollow">首页</a>\r\n        </li>\r\n         \r\n        <li><a href="category.php?id=2"  rel="nofollow">生鲜食品</a>\r\n        </li>\r\n         \r\n        <li><a href="category.php?id=1"  rel="nofollow">酒水饮料</a>\r\n        </li>\r\n         \r\n        <li><a href="group_buy.php"  rel="nofollow">团购商品</a>\r\n        </li>\r\n         \r\n        <li><a href="exchange.php"  rel="nofollow">积分兑换</a>\r\n        </li>\r\n         \r\n        <li><a href="category.php?id=130"  rel="nofollow">电脑</a>\r\n        </li>\r\n              </ul>\r\n      <div class="hd_cart" id="ECS_CARTINFO"> \r\n         <a class="tit" href="flow.php"><b class="iconfont">Ɲ</b>去购物车结算<span><i class="iconfont">\ue62c</i></span><em class="num" id="hd_cartnum" style="visibility: visible;">0</em></a>\r\n       <div class="list">\r\n<p class="fail" style="display:none;"><i class="iconfont">ŭ</i><br>\r\n  购物车空啦<br>\r\n  爱Ta，就带Ta来购物车吧</p>\r\n \r\n</div>\r\n<script type="text/javascript">\r\nfunction deleteCartGoods(rec_id)\r\n{\r\n\tAjax.call(\'delete_cart_goods.php\', \'id=\'+rec_id, deleteCartGoodsResponse, \'POST\', \'JSON\');\r\n}\r\n\r\n/**\r\n * 接收返回的信息\r\n */\r\nfunction deleteCartGoodsResponse(res)\r\n{\r\n  if (res.error)\r\n  {\r\n    alert(res.err_msg);\r\n  }\r\n  else\r\n  {\r\n\t  $("#ECS_CARTINFO").html(res.content);\r\n  }\r\n}\r\n</script>       </div>\r\n    </div>\r\n  </div>\r\n  <div class="search_result"></div>\r\n</div>\r\n\r\n<div id="wrapper" class="common_main">\r\n  <div class="here cle" style="padding:10px 20px;"><a href=".">首页</a> <code>&gt;</code> 系统提示</div>\r\n  <div class="box" style="padding:20px;">\r\n   <div class="box_1">\r\n    <h3><span>系统信息</span></h3>\r\n    <div class="boxCenterList RelaArticle" align="center">\r\n      <div style="margin:20px auto;">\r\n      <p style="font-size: 14px; font-weight:bold; color: red;">发表留言成功</p>\r\n        <div class="blank"></div>\r\n                            <p><a href="user.php?act=message_list&order_id=0">返回留言列表</a></p>\r\n                        </div>\r\n    </div>\r\n   </div>\r\n  </div>\r\n</div>\r\n<div class="blank5"></div>\r\n<div id="footer">\r\n  <div class="ft-bg">\r\n    <div class="w-ensure mb20">\r\n    \t<div class="w-main">\r\n        \t<ul>\r\n            \t<li><a target="_blank" href=""><img width="300" height="90" src="themes/lizi/images/ft-svr1.gif"></a></li>\r\n            \t<li><a target="_blank" href=""><img width="300" height="90" src="themes/lizi/images/ft-svr2.gif"></a></li>\r\n            \t<li><a target="_blank" href=""><img width="300" height="90" src="themes/lizi/images/ft-svr3.gif"></a></li>\r\n            \t<li><a target="_blank" href=""><img width="300" height="90" src="themes/lizi/images/ft-svr4.gif"></a></li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n    <div class="ft_main">\r\n      <div class="ft_links">\r\n        <div class="ft_nav"> \r\n           \r\n           \r\n          <a href="article.php?id=1"    \r\n          class="noborder" \r\n           rel="nofollow">免责条款</a> \r\n           \r\n          <a href="article.php?id=2"    rel="nofollow">隐私保护</a> \r\n           \r\n          <a href="article.php?id=3"    rel="nofollow">咨询热点</a> \r\n           \r\n          <a href="article.php?id=4"    rel="nofollow">联系我们</a> \r\n           \r\n          <a href="article.php?id=5"    rel="nofollow">公司简介</a> \r\n           \r\n          <a href="wholesale.php"    rel="nofollow">批发方案</a> \r\n           \r\n          <a href="myship.php"    rel="nofollow">配送方式</a> \r\n           \r\n           \r\n          \r\n        </div>\r\n      </div>\r\n      <div class="ft_txt">\r\n        <p>&copy; 2005-2026 商城演示站 版权所有，并保留所有权利。ICP备案证书号：<a href="http://www.miitbeian.gov.cn" target="_blank" rel="nofollow">蜀ICP12345678号</a></p>\r\n        <p class="ft_contact"> <span>服务时间：09:00-23:00</span>  \r\n          <span class="ft_phone">客服热线: <em>028-87760898</em></span> \r\n          </p>\r\n          \r\n                </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<script>\r\n\t$(function(){\r\n\t\t$(window).scroll(function(){\r\n\t\t\tif($(window).scrollTop()>100){  //距顶部多少像素时，出现返回顶部按钮\r\n\t\t\t\t$("#side-bar .gotop").fadeIn();\t\r\n\t\t\t}\r\n\t\t\telse{\r\n\t\t\t\t$("#side-bar .gotop").hide();\r\n\t\t\t}\r\n\t\t});\r\n\t\t$("#side-bar .gotop").click(function(){\r\n\t\t\t$(\'html,body\').animate({\'scrollTop\':0},500); //返回顶部动画 数值越小时间越短\r\n\t\t});\r\n\t});\r\n</script>\r\n<ul id="side-bar" class="side-pannel side-bar">\r\n      <a href="http://wpa.qq.com/msgrd?v=3&uin=1234567&site=商城演示站&menu=yes" target="_blank" class="kefuqq"></a>\r\n      <a href="http://wpa.qq.com/msgrd?v=3&uin=7654317&site=商城演示站&menu=yes" target="_blank" class="kefuqq"></a>\r\n        <a href="http://amos1.taobao.com/msg.ww?v=2&uid=&s=2" target="_blank" class="kefuww"></a>\r\n    <a href="javascript:;" class="qr weixin"><i></i></a>\r\n  <a href="javascript:;" class="gotop" style="display:none;"></a>\r\n</ul>\r\n\r\n</body>\r\n</html>\r\n'
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>8</td>
+                    <td class="LeaveMsq">LeaveMsq</td>
+                    <td>test_leave_msg_008</td>
+                    <td>留言类型为空，发表留言失败</td>
+                    <td>0.186s</td>
+                    
+                        <td class="text-warning">失败</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>test_leave_msg_008 (test_leave_msg.LeaveMsq.test_leave_msg_008)执行——>【失败】
+</pre>
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "D:\Program Files\Python312\Lib\unittest\case.py", line 58, in testPartExecutor
+    yield
+</pre>
+                        
+
+                            <pre>  File "D:\Program Files\Python312\Lib\unittest\case.py", line 634, in run
+    self._callTestMethod(testMethod)
+</pre>
+                        
+
+                            <pre>  File "D:\Program Files\Python312\Lib\unittest\case.py", line 589, in _callTestMethod
+    if method() is not None:
+       ^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "D:\Program Files\Python312\Lib\site-packages\unittestreport\core\dataDriver.py", line 19, in wrapper
+    return func(self, params, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "D:\PythonProject\109\MallApi\testcases\test_leave_msg.py", line 22, in test_leave_msg
+    self.assertIn(yaml_data["expect_val"],resp.text)
+</pre>
+                        
+
+                            <pre>AssertionError: '留言失败' not found in '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">\r\n<html xmlns="http://www.w3.org/1999/xhtml">\r\n<head>\r\n<meta name="Generator" content="ECSHOP v2.7.3" />\r\n<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />\n<meta name="Keywords" content="" />\r\n<meta name="Description" content="" />\r\n<meta name="Description" content="" />\r\n\r\n\r\n<title>系统提示_商城演示站</title>\r\n\r\n\r\n\r\n<link rel="shortcut icon" href="favicon.ico" />\r\n<link rel="icon" href="animated_favicon.gif" type="image/gif" />\r\n<link href="themes/lizi/style.css" rel="stylesheet" type="text/css" />\r\n\r\n<script type="text/javascript" src="js/common.js"></script><style type="text/css">\r\np a {\r\n\tcolor: #006acd;\r\n\ttext-decoration: underline;\r\n}\r\n</style>\r\n</head><body>\r\n<script type="text/javascript" src="themes/lizi/js/jquery-1.9.1.min.js"></script>\r\n<script type="text/javascript" src="themes/lizi/js/jquery.json.js"></script>\r\n<script type="text/javascript" src="themes/lizi/js/transport_jquery.js"></script>\r\n<script type="text/javascript" src="themes/lizi/js/utils.js"></script>\r\n<script type="text/javascript" src="themes/lizi/js/jquery.SuperSlide.js"></script>\r\n<script type="text/javascript" src="themes/lizi/js/lizi_common.js"></script>\r\n\r\n\r\n<style>\r\n\r\n.topimg{width:100%; height:50px; margin:0 auto}\r\n.topimg a img{width:100%; height:50px; margin:0 auto; border:0px}\r\n</style>\r\n<div class="topimg">\r\n\t\t  \r\n\t   <a href=\'affiche.php?ad_id=10&uri=\'><img src=\'data/afficheimg/1460440720430642585.jpg\' width=\'1024\' height=\'50\' /></a>\t</div>\r\n<div id="header" class="new_header">\r\n  <div class="hd_bar">\r\n    <div class="bd_bar_bd cle">\r\n      <ul class="welcome">\r\n        <li><a id="favorite_wb" href="javascript:;" rel="nofollow">收藏商城演示站</a></li>\r\n\t\t<li id="ECS_MEMBERZONE"><a href="user.php" class="">qqq</a>&nbsp;[<a href="user.php?act=logout">退出</a>]</li>\r\n        \r\n            \r\n</li>\r\n      </ul>\r\n      <ul id="userinfo-bar">\r\n        <li class="more-menu"> <a href="user.php">会员中心</a><i class="iconfont arrow">&#8193;</i>\r\n          <div class="more-bd">\r\n            <div class="list"> <a href="user.php?act=order_list">我的订单</a> <a href="user.php?act=comment_list">我的评价</a> <a href="user.php?act=account_log">我的余额</a> <a href="user.php?act=bonus">我的红包</a> <a href="user.php?act=collection_list">我的收藏</a> <a href="user.php?act=address_list" class="last">修改收货地址</a> </div>\r\n          </div>\r\n        </li>\r\n        <li><a href="mobile/"><i class="iconfont vipico"></i>手机版</a></li>\r\n      </ul>\r\n    </div>\r\n  </div>\r\n  <script type="text/javascript">\r\n    \r\n    <!--\r\n    function checkSearchForm()\r\n    {\r\n        if(document.getElementById(\'keyword\').value)\r\n        {\r\n            return true;\r\n        }\r\n        else\r\n        {\r\n            alert("请输入搜索关键词！");\r\n            return false;\r\n        }\r\n    }\r\n    -->\r\n    \r\n    </script>\r\n  <div class="hd_main cle">\r\n    <div class="logo"> <a href="./" class="lizi_logo"><img src="themes/lizi/images/logo.gif" alt="商城演示站"/></a> \r\n    </div>\r\n    <div class="search_box">\r\n      <form action="search.php" method="get" id="searchForm" name="searchForm" onSubmit="return checkSearchForm()">\r\n        <input class="sea_input" type="text" name="keywords" id="keyword" value="" autocomplete="off">\r\n        <input type="hidden" value="k1" name="dataBi">\r\n        <button type="submit" class="sea_submit">搜索</button>\r\n      </form>\r\n    </div>\r\n        <div class="head_search_hot"> <span>热搜榜：</span>  <a href="search.php?keywords=%E6%B0%B4%E6%9E%9C" target="_blank">水果</a>  <a href="search.php?keywords=%E7%89%9B%E5%A5%B6" target="_blank">牛奶</a>  <a href="search.php?keywords=%E6%B5%8B%E8%AF%95" target="_blank">测试</a>  <a href="search.php?keywords=%E5%A8%81%E5%A3%AB%E5%BF%8C" target="_blank">威士忌</a>  <a href="search.php?keywords=%E8%94%AC%E8%8F%9C" target="_blank">蔬菜</a>  </div>\r\n        <div class="intro">\r\n      <ul>\r\n        <li class="no1"><a href="javascript:void(0);" target="_blank">\r\n          <h4>正品保障</h4>\r\n          <p>100%正品低价</p>\r\n          </a></li>\r\n        <li class="no2"><a href="javascript:void(0);" target="_blank">\r\n          <h4>30天退换货</h4>\r\n          <p>购物有保障</p>\r\n          </a></li>\r\n        <li class="no3"><a href="javascript:void(0);" target="_blank">\r\n          <h4>满99就包邮</h4>\r\n          <p>闪电发货</p>\r\n          </a></li>\r\n      </ul>\r\n    </div>\r\n  </div>\r\n  <div class="hd_nav">\r\n    <div class="hd_nav_bd cle">\r\n      <div class="main_nav" id="main_nav">\r\n        <div class="main_nav_link"> <a href="javascript:;">全部商品分类</a> <i class="iconfont">\ue62e</i> </div>\r\n        <div class="main_cata" id="J_mainCata" style="opacity: 0; display: none;">\r\n          <ul>\r\n                        <li class="first">\r\n              <h3 style="background:url(data/cat_ico/1449088788518670880.png) 20px center no-repeat;"><a href="category.php?id=2">生鲜食品</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449088848823694266.png) 20px center no-repeat;"><a href="category.php?id=1">酒水饮料</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449088901458193225.png) 20px center no-repeat;"><a href="category.php?id=5">粮油副食</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449088957941770398.png) 20px center no-repeat;"><a href="category.php?id=11">蔬菜水果</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449089137240745101.png) 20px center no-repeat;"><a href="category.php?id=9">休闲食品</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449089235904530709.png) 20px center no-repeat;"><a href="category.php?id=12">奶类食品</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449089297229428349.png) 20px center no-repeat;"><a href="category.php?id=6">天然干货</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449089358084135937.png) 20px center no-repeat;"><a href="category.php?id=7">精选茗茶</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/) 20px center no-repeat;"><a href="category.php?id=130">电脑</a></h3>\r\n            </li>\r\n                      </ul>\r\n        </div>\r\n       \r\n     \r\n        <div class="J_subCata" id="J_subCata" style="opacity: 0; left: 213px; top: 35px;">\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=15">精品肉类</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=64">羊肉</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=65">禽类</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=66">猪肉</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=67">牛肉</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=16">海鲜水产</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=68">参鲍</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=69">鱼</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=70">虾</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=71">蟹/贝</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=17">蛋制品</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=72">松花蛋/咸鸭蛋</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=73">鸡蛋</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=18">叶菜类</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=74">生菜</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=75">菠菜</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=76">圆椒</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=77">西兰花</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=19">根茎类</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=20">茄果类</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=21">菌菇类</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=22">进口生鲜</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=23">白酒</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=83">五粮液</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=84">泸州老窖</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=85">茅台</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=24">葡萄酒</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=25">洋酒</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=26">啤酒</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=27">其他酒品</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=78">其他品牌</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=79">黄酒</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=80">养生酒</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=28">饮料/水</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=29">红酒</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=81">白兰地</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=82">威士忌</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=30">食用油</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=86">其他食用油</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=87">菜仔油</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=88">花生油</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=89">橄榄油</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=90">礼盒</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=31">米面杂粮</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=91">面粉/面条</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=92">大米</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=93">意大利面</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=32">厨房调料</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=94">调味油/汁</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=95">酱油/醋</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=33">南北干货</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=34">方便速食</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=35">调味品</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=41">有机蔬菜</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=96">西红柿</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=97">韭菜</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=98">青菜</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=42">精选蔬菜</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=99">甘蓝</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=100">胡萝卜</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=101">黄瓜</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=43">进口水果</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=102">火龙果</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=103">菠萝蜜</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=104">奇异果</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=44">国产水果</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=105">水果礼盒</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=106">苹果</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=107">雪梨</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=36">休闲零食</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=108">果冻</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=109">枣类</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=110">蜜饯</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=111">肉类零食</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=112">坚果炒货</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=37">糖果</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=113">创意喜糖</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=114">口香糖</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=115">软糖</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=116">棒棒糖</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=38">巧克力</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=117">夹心巧克力</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=118">白巧克力</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=119">松露巧克力</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=120">黑巧克力</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=39">肉干肉脯/豆干</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=121">牛肉干</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=122">猪肉脯</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=123">牛肉粒</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=124">猪肉干</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=40">鱿鱼丝/鱼干</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=125">鱿鱼足</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=126">鱿鱼丝</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=127">墨鱼/乌贼</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=128">鱿鱼仔</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=129">鱿鱼片</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=45">进口奶品</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=46">国产奶品</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=47">奶粉</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=48">有机奶</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=49">原料奶</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=53">菌菇类</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=54">腌干海产</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=55">汤料</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=56">豆类</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=57">干菜/菜干</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=58">干果/果干</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=59">豆制品</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=60">腊味</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=61">白茶</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=62">红茶</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=63">绿茶</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n          </div>\r\n                  </div>\r\n      \r\n        \r\n                \r\n\r\n      </div>\r\n      <ul class="sub_nav cle" id="sub_nav">\r\n        <li class="current"><a href="./" rel="nofollow">首页</a>\r\n        </li>\r\n         \r\n        <li><a href="category.php?id=2"  rel="nofollow">生鲜食品</a>\r\n        </li>\r\n         \r\n        <li><a href="category.php?id=1"  rel="nofollow">酒水饮料</a>\r\n        </li>\r\n         \r\n        <li><a href="group_buy.php"  rel="nofollow">团购商品</a>\r\n        </li>\r\n         \r\n        <li><a href="exchange.php"  rel="nofollow">积分兑换</a>\r\n        </li>\r\n         \r\n        <li><a href="category.php?id=130"  rel="nofollow">电脑</a>\r\n        </li>\r\n              </ul>\r\n      <div class="hd_cart" id="ECS_CARTINFO"> \r\n         <a class="tit" href="flow.php"><b class="iconfont">Ɲ</b>去购物车结算<span><i class="iconfont">\ue62c</i></span><em class="num" id="hd_cartnum" style="visibility: visible;">0</em></a>\r\n       <div class="list">\r\n<p class="fail" style="display:none;"><i class="iconfont">ŭ</i><br>\r\n  购物车空啦<br>\r\n  爱Ta，就带Ta来购物车吧</p>\r\n \r\n</div>\r\n<script type="text/javascript">\r\nfunction deleteCartGoods(rec_id)\r\n{\r\n\tAjax.call(\'delete_cart_goods.php\', \'id=\'+rec_id, deleteCartGoodsResponse, \'POST\', \'JSON\');\r\n}\r\n\r\n/**\r\n * 接收返回的信息\r\n */\r\nfunction deleteCartGoodsResponse(res)\r\n{\r\n  if (res.error)\r\n  {\r\n    alert(res.err_msg);\r\n  }\r\n  else\r\n  {\r\n\t  $("#ECS_CARTINFO").html(res.content);\r\n  }\r\n}\r\n</script>       </div>\r\n    </div>\r\n  </div>\r\n  <div class="search_result"></div>\r\n</div>\r\n\r\n<div id="wrapper" class="common_main">\r\n  <div class="here cle" style="padding:10px 20px;"><a href=".">首页</a> <code>&gt;</code> 系统提示</div>\r\n  <div class="box" style="padding:20px;">\r\n   <div class="box_1">\r\n    <h3><span>系统信息</span></h3>\r\n    <div class="boxCenterList RelaArticle" align="center">\r\n      <div style="margin:20px auto;">\r\n      <p style="font-size: 14px; font-weight:bold; color: red;">发表留言成功</p>\r\n        <div class="blank"></div>\r\n                            <p><a href="user.php?act=message_list&order_id=0">返回留言列表</a></p>\r\n                        </div>\r\n    </div>\r\n   </div>\r\n  </div>\r\n</div>\r\n<div class="blank5"></div>\r\n<div id="footer">\r\n  <div class="ft-bg">\r\n    <div class="w-ensure mb20">\r\n    \t<div class="w-main">\r\n        \t<ul>\r\n            \t<li><a target="_blank" href=""><img width="300" height="90" src="themes/lizi/images/ft-svr1.gif"></a></li>\r\n            \t<li><a target="_blank" href=""><img width="300" height="90" src="themes/lizi/images/ft-svr2.gif"></a></li>\r\n            \t<li><a target="_blank" href=""><img width="300" height="90" src="themes/lizi/images/ft-svr3.gif"></a></li>\r\n            \t<li><a target="_blank" href=""><img width="300" height="90" src="themes/lizi/images/ft-svr4.gif"></a></li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n    <div class="ft_main">\r\n      <div class="ft_links">\r\n        <div class="ft_nav"> \r\n           \r\n           \r\n          <a href="article.php?id=1"    \r\n          class="noborder" \r\n           rel="nofollow">免责条款</a> \r\n           \r\n          <a href="article.php?id=2"    rel="nofollow">隐私保护</a> \r\n           \r\n          <a href="article.php?id=3"    rel="nofollow">咨询热点</a> \r\n           \r\n          <a href="article.php?id=4"    rel="nofollow">联系我们</a> \r\n           \r\n          <a href="article.php?id=5"    rel="nofollow">公司简介</a> \r\n           \r\n          <a href="wholesale.php"    rel="nofollow">批发方案</a> \r\n           \r\n          <a href="myship.php"    rel="nofollow">配送方式</a> \r\n           \r\n           \r\n          \r\n        </div>\r\n      </div>\r\n      <div class="ft_txt">\r\n        <p>&copy; 2005-2026 商城演示站 版权所有，并保留所有权利。ICP备案证书号：<a href="http://www.miitbeian.gov.cn" target="_blank" rel="nofollow">蜀ICP12345678号</a></p>\r\n        <p class="ft_contact"> <span>服务时间：09:00-23:00</span>  \r\n          <span class="ft_phone">客服热线: <em>028-87760898</em></span> \r\n          </p>\r\n          \r\n                </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<script>\r\n\t$(function(){\r\n\t\t$(window).scroll(function(){\r\n\t\t\tif($(window).scrollTop()>100){  //距顶部多少像素时，出现返回顶部按钮\r\n\t\t\t\t$("#side-bar .gotop").fadeIn();\t\r\n\t\t\t}\r\n\t\t\telse{\r\n\t\t\t\t$("#side-bar .gotop").hide();\r\n\t\t\t}\r\n\t\t});\r\n\t\t$("#side-bar .gotop").click(function(){\r\n\t\t\t$(\'html,body\').animate({\'scrollTop\':0},500); //返回顶部动画 数值越小时间越短\r\n\t\t});\r\n\t});\r\n</script>\r\n<ul id="side-bar" class="side-pannel side-bar">\r\n      <a href="http://wpa.qq.com/msgrd?v=3&uin=1234567&site=商城演示站&menu=yes" target="_blank" class="kefuqq"></a>\r\n      <a href="http://wpa.qq.com/msgrd?v=3&uin=7654317&site=商城演示站&menu=yes" target="_blank" class="kefuqq"></a>\r\n        <a href="http://amos1.taobao.com/msg.ww?v=2&uid=&s=2" target="_blank" class="kefuww"></a>\r\n    <a href="javascript:;" class="qr weixin"><i></i></a>\r\n  <a href="javascript:;" class="gotop" style="display:none;"></a>\r\n</ul>\r\n\r\n</body>\r\n</html>\r\n'
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>9</td>
+                    <td class="LeaveMsq">LeaveMsq</td>
+                    <td>test_leave_msg_009</td>
+                    <td>留言主题为空，发表留言失败</td>
+                    <td>0.196s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>test_leave_msg_009 (test_leave_msg.LeaveMsq.test_leave_msg_009)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>10</td>
+                    <td class="LeaveMsq">LeaveMsq</td>
+                    <td>test_leave_msg_010</td>
+                    <td>留言主题过长，发表留言失败</td>
+                    <td>0.167s</td>
+                    
+                        <td class="text-warning">失败</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>test_leave_msg_010 (test_leave_msg.LeaveMsq.test_leave_msg_010)执行——>【失败】
+</pre>
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "D:\Program Files\Python312\Lib\unittest\case.py", line 58, in testPartExecutor
+    yield
+</pre>
+                        
+
+                            <pre>  File "D:\Program Files\Python312\Lib\unittest\case.py", line 634, in run
+    self._callTestMethod(testMethod)
+</pre>
+                        
+
+                            <pre>  File "D:\Program Files\Python312\Lib\unittest\case.py", line 589, in _callTestMethod
+    if method() is not None:
+       ^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "D:\Program Files\Python312\Lib\site-packages\unittestreport\core\dataDriver.py", line 19, in wrapper
+    return func(self, params, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "D:\PythonProject\109\MallApi\testcases\test_leave_msg.py", line 22, in test_leave_msg
+    self.assertIn(yaml_data["expect_val"],resp.text)
+</pre>
+                        
+
+                            <pre>AssertionError: '留言标题不能超过200个字' not found in '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">\r\n<html xmlns="http://www.w3.org/1999/xhtml">\r\n<head>\r\n<meta name="Generator" content="ECSHOP v2.7.3" />\r\n<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />\n<meta name="Keywords" content="" />\r\n<meta name="Description" content="" />\r\n<meta name="Description" content="" />\r\n\r\n\r\n<title>系统提示_商城演示站</title>\r\n\r\n\r\n\r\n<link rel="shortcut icon" href="favicon.ico" />\r\n<link rel="icon" href="animated_favicon.gif" type="image/gif" />\r\n<link href="themes/lizi/style.css" rel="stylesheet" type="text/css" />\r\n\r\n<script type="text/javascript" src="js/common.js"></script><style type="text/css">\r\np a {\r\n\tcolor: #006acd;\r\n\ttext-decoration: underline;\r\n}\r\n</style>\r\n</head><body>\r\n<script type="text/javascript" src="themes/lizi/js/jquery-1.9.1.min.js"></script>\r\n<script type="text/javascript" src="themes/lizi/js/jquery.json.js"></script>\r\n<script type="text/javascript" src="themes/lizi/js/transport_jquery.js"></script>\r\n<script type="text/javascript" src="themes/lizi/js/utils.js"></script>\r\n<script type="text/javascript" src="themes/lizi/js/jquery.SuperSlide.js"></script>\r\n<script type="text/javascript" src="themes/lizi/js/lizi_common.js"></script>\r\n\r\n\r\n<style>\r\n\r\n.topimg{width:100%; height:50px; margin:0 auto}\r\n.topimg a img{width:100%; height:50px; margin:0 auto; border:0px}\r\n</style>\r\n<div class="topimg">\r\n\t\t  \r\n\t   <a href=\'affiche.php?ad_id=10&uri=\'><img src=\'data/afficheimg/1460440720430642585.jpg\' width=\'1024\' height=\'50\' /></a>\t</div>\r\n<div id="header" class="new_header">\r\n  <div class="hd_bar">\r\n    <div class="bd_bar_bd cle">\r\n      <ul class="welcome">\r\n        <li><a id="favorite_wb" href="javascript:;" rel="nofollow">收藏商城演示站</a></li>\r\n\t\t<li id="ECS_MEMBERZONE"><a href="user.php" class="">qqq</a>&nbsp;[<a href="user.php?act=logout">退出</a>]</li>\r\n        \r\n            \r\n</li>\r\n      </ul>\r\n      <ul id="userinfo-bar">\r\n        <li class="more-menu"> <a href="user.php">会员中心</a><i class="iconfont arrow">&#8193;</i>\r\n          <div class="more-bd">\r\n            <div class="list"> <a href="user.php?act=order_list">我的订单</a> <a href="user.php?act=comment_list">我的评价</a> <a href="user.php?act=account_log">我的余额</a> <a href="user.php?act=bonus">我的红包</a> <a href="user.php?act=collection_list">我的收藏</a> <a href="user.php?act=address_list" class="last">修改收货地址</a> </div>\r\n          </div>\r\n        </li>\r\n        <li><a href="mobile/"><i class="iconfont vipico"></i>手机版</a></li>\r\n      </ul>\r\n    </div>\r\n  </div>\r\n  <script type="text/javascript">\r\n    \r\n    <!--\r\n    function checkSearchForm()\r\n    {\r\n        if(document.getElementById(\'keyword\').value)\r\n        {\r\n            return true;\r\n        }\r\n        else\r\n        {\r\n            alert("请输入搜索关键词！");\r\n            return false;\r\n        }\r\n    }\r\n    -->\r\n    \r\n    </script>\r\n  <div class="hd_main cle">\r\n    <div class="logo"> <a href="./" class="lizi_logo"><img src="themes/lizi/images/logo.gif" alt="商城演示站"/></a> \r\n    </div>\r\n    <div class="search_box">\r\n      <form action="search.php" method="get" id="searchForm" name="searchForm" onSubmit="return checkSearchForm()">\r\n        <input class="sea_input" type="text" name="keywords" id="keyword" value="" autocomplete="off">\r\n        <input type="hidden" value="k1" name="dataBi">\r\n        <button type="submit" class="sea_submit">搜索</button>\r\n      </form>\r\n    </div>\r\n        <div class="head_search_hot"> <span>热搜榜：</span>  <a href="search.php?keywords=%E6%B0%B4%E6%9E%9C" target="_blank">水果</a>  <a href="search.php?keywords=%E7%89%9B%E5%A5%B6" target="_blank">牛奶</a>  <a href="search.php?keywords=%E6%B5%8B%E8%AF%95" target="_blank">测试</a>  <a href="search.php?keywords=%E5%A8%81%E5%A3%AB%E5%BF%8C" target="_blank">威士忌</a>  <a href="search.php?keywords=%E8%94%AC%E8%8F%9C" target="_blank">蔬菜</a>  </div>\r\n        <div class="intro">\r\n      <ul>\r\n        <li class="no1"><a href="javascript:void(0);" target="_blank">\r\n          <h4>正品保障</h4>\r\n          <p>100%正品低价</p>\r\n          </a></li>\r\n        <li class="no2"><a href="javascript:void(0);" target="_blank">\r\n          <h4>30天退换货</h4>\r\n          <p>购物有保障</p>\r\n          </a></li>\r\n        <li class="no3"><a href="javascript:void(0);" target="_blank">\r\n          <h4>满99就包邮</h4>\r\n          <p>闪电发货</p>\r\n          </a></li>\r\n      </ul>\r\n    </div>\r\n  </div>\r\n  <div class="hd_nav">\r\n    <div class="hd_nav_bd cle">\r\n      <div class="main_nav" id="main_nav">\r\n        <div class="main_nav_link"> <a href="javascript:;">全部商品分类</a> <i class="iconfont">\ue62e</i> </div>\r\n        <div class="main_cata" id="J_mainCata" style="opacity: 0; display: none;">\r\n          <ul>\r\n                        <li class="first">\r\n              <h3 style="background:url(data/cat_ico/1449088788518670880.png) 20px center no-repeat;"><a href="category.php?id=2">生鲜食品</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449088848823694266.png) 20px center no-repeat;"><a href="category.php?id=1">酒水饮料</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449088901458193225.png) 20px center no-repeat;"><a href="category.php?id=5">粮油副食</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449088957941770398.png) 20px center no-repeat;"><a href="category.php?id=11">蔬菜水果</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449089137240745101.png) 20px center no-repeat;"><a href="category.php?id=9">休闲食品</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449089235904530709.png) 20px center no-repeat;"><a href="category.php?id=12">奶类食品</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449089297229428349.png) 20px center no-repeat;"><a href="category.php?id=6">天然干货</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449089358084135937.png) 20px center no-repeat;"><a href="category.php?id=7">精选茗茶</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/) 20px center no-repeat;"><a href="category.php?id=130">电脑</a></h3>\r\n            </li>\r\n                      </ul>\r\n        </div>\r\n       \r\n     \r\n        <div class="J_subCata" id="J_subCata" style="opacity: 0; left: 213px; top: 35px;">\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=15">精品肉类</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=64">羊肉</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=65">禽类</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=66">猪肉</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=67">牛肉</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=16">海鲜水产</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=68">参鲍</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=69">鱼</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=70">虾</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=71">蟹/贝</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=17">蛋制品</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=72">松花蛋/咸鸭蛋</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=73">鸡蛋</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=18">叶菜类</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=74">生菜</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=75">菠菜</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=76">圆椒</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=77">西兰花</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=19">根茎类</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=20">茄果类</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=21">菌菇类</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=22">进口生鲜</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=23">白酒</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=83">五粮液</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=84">泸州老窖</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=85">茅台</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=24">葡萄酒</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=25">洋酒</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=26">啤酒</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=27">其他酒品</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=78">其他品牌</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=79">黄酒</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=80">养生酒</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=28">饮料/水</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=29">红酒</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=81">白兰地</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=82">威士忌</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=30">食用油</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=86">其他食用油</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=87">菜仔油</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=88">花生油</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=89">橄榄油</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=90">礼盒</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=31">米面杂粮</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=91">面粉/面条</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=92">大米</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=93">意大利面</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=32">厨房调料</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=94">调味油/汁</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=95">酱油/醋</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=33">南北干货</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=34">方便速食</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=35">调味品</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=41">有机蔬菜</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=96">西红柿</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=97">韭菜</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=98">青菜</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=42">精选蔬菜</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=99">甘蓝</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=100">胡萝卜</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=101">黄瓜</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=43">进口水果</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=102">火龙果</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=103">菠萝蜜</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=104">奇异果</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=44">国产水果</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=105">水果礼盒</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=106">苹果</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=107">雪梨</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=36">休闲零食</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=108">果冻</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=109">枣类</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=110">蜜饯</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=111">肉类零食</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=112">坚果炒货</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=37">糖果</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=113">创意喜糖</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=114">口香糖</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=115">软糖</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=116">棒棒糖</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=38">巧克力</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=117">夹心巧克力</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=118">白巧克力</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=119">松露巧克力</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=120">黑巧克力</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=39">肉干肉脯/豆干</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=121">牛肉干</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=122">猪肉脯</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=123">牛肉粒</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=124">猪肉干</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=40">鱿鱼丝/鱼干</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=125">鱿鱼足</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=126">鱿鱼丝</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=127">墨鱼/乌贼</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=128">鱿鱼仔</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=129">鱿鱼片</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=45">进口奶品</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=46">国产奶品</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=47">奶粉</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=48">有机奶</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=49">原料奶</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=53">菌菇类</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=54">腌干海产</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=55">汤料</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=56">豆类</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=57">干菜/菜干</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=58">干果/果干</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=59">豆制品</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=60">腊味</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=61">白茶</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=62">红茶</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=63">绿茶</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n          </div>\r\n                  </div>\r\n      \r\n        \r\n                \r\n\r\n      </div>\r\n      <ul class="sub_nav cle" id="sub_nav">\r\n        <li class="current"><a href="./" rel="nofollow">首页</a>\r\n        </li>\r\n         \r\n        <li><a href="category.php?id=2"  rel="nofollow">生鲜食品</a>\r\n        </li>\r\n         \r\n        <li><a href="category.php?id=1"  rel="nofollow">酒水饮料</a>\r\n        </li>\r\n         \r\n        <li><a href="group_buy.php"  rel="nofollow">团购商品</a>\r\n        </li>\r\n         \r\n        <li><a href="exchange.php"  rel="nofollow">积分兑换</a>\r\n        </li>\r\n         \r\n        <li><a href="category.php?id=130"  rel="nofollow">电脑</a>\r\n        </li>\r\n              </ul>\r\n      <div class="hd_cart" id="ECS_CARTINFO"> \r\n         <a class="tit" href="flow.php"><b class="iconfont">Ɲ</b>去购物车结算<span><i class="iconfont">\ue62c</i></span><em class="num" id="hd_cartnum" style="visibility: visible;">0</em></a>\r\n       <div class="list">\r\n<p class="fail" style="display:none;"><i class="iconfont">ŭ</i><br>\r\n  购物车空啦<br>\r\n  爱Ta，就带Ta来购物车吧</p>\r\n \r\n</div>\r\n<script type="text/javascript">\r\nfunction deleteCartGoods(rec_id)\r\n{\r\n\tAjax.call(\'delete_cart_goods.php\', \'id=\'+rec_id, deleteCartGoodsResponse, \'POST\', \'JSON\');\r\n}\r\n\r\n/**\r\n * 接收返回的信息\r\n */\r\nfunction deleteCartGoodsResponse(res)\r\n{\r\n  if (res.error)\r\n  {\r\n    alert(res.err_msg);\r\n  }\r\n  else\r\n  {\r\n\t  $("#ECS_CARTINFO").html(res.content);\r\n  }\r\n}\r\n</script>       </div>\r\n    </div>\r\n  </div>\r\n  <div class="search_result"></div>\r\n</div>\r\n\r\n<div id="wrapper" class="common_main">\r\n  <div class="here cle" style="padding:10px 20px;"><a href=".">首页</a> <code>&gt;</code> 系统提示</div>\r\n  <div class="box" style="padding:20px;">\r\n   <div class="box_1">\r\n    <h3><span>系统信息</span></h3>\r\n    <div class="boxCenterList RelaArticle" align="center">\r\n      <div style="margin:20px auto;">\r\n      <p style="font-size: 14px; font-weight:bold; color: red;">发表留言成功</p>\r\n        <div class="blank"></div>\r\n                            <p><a href="user.php?act=message_list&order_id=0">返回留言列表</a></p>\r\n                        </div>\r\n    </div>\r\n   </div>\r\n  </div>\r\n</div>\r\n<div class="blank5"></div>\r\n<div id="footer">\r\n  <div class="ft-bg">\r\n    <div class="w-ensure mb20">\r\n    \t<div class="w-main">\r\n        \t<ul>\r\n            \t<li><a target="_blank" href=""><img width="300" height="90" src="themes/lizi/images/ft-svr1.gif"></a></li>\r\n            \t<li><a target="_blank" href=""><img width="300" height="90" src="themes/lizi/images/ft-svr2.gif"></a></li>\r\n            \t<li><a target="_blank" href=""><img width="300" height="90" src="themes/lizi/images/ft-svr3.gif"></a></li>\r\n            \t<li><a target="_blank" href=""><img width="300" height="90" src="themes/lizi/images/ft-svr4.gif"></a></li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n    <div class="ft_main">\r\n      <div class="ft_links">\r\n        <div class="ft_nav"> \r\n           \r\n           \r\n          <a href="article.php?id=1"    \r\n          class="noborder" \r\n           rel="nofollow">免责条款</a> \r\n           \r\n          <a href="article.php?id=2"    rel="nofollow">隐私保护</a> \r\n           \r\n          <a href="article.php?id=3"    rel="nofollow">咨询热点</a> \r\n           \r\n          <a href="article.php?id=4"    rel="nofollow">联系我们</a> \r\n           \r\n          <a href="article.php?id=5"    rel="nofollow">公司简介</a> \r\n           \r\n          <a href="wholesale.php"    rel="nofollow">批发方案</a> \r\n           \r\n          <a href="myship.php"    rel="nofollow">配送方式</a> \r\n           \r\n           \r\n          \r\n        </div>\r\n      </div>\r\n      <div class="ft_txt">\r\n        <p>&copy; 2005-2026 商城演示站 版权所有，并保留所有权利。ICP备案证书号：<a href="http://www.miitbeian.gov.cn" target="_blank" rel="nofollow">蜀ICP12345678号</a></p>\r\n        <p class="ft_contact"> <span>服务时间：09:00-23:00</span>  \r\n          <span class="ft_phone">客服热线: <em>028-87760898</em></span> \r\n          </p>\r\n          \r\n                </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<script>\r\n\t$(function(){\r\n\t\t$(window).scroll(function(){\r\n\t\t\tif($(window).scrollTop()>100){  //距顶部多少像素时，出现返回顶部按钮\r\n\t\t\t\t$("#side-bar .gotop").fadeIn();\t\r\n\t\t\t}\r\n\t\t\telse{\r\n\t\t\t\t$("#side-bar .gotop").hide();\r\n\t\t\t}\r\n\t\t});\r\n\t\t$("#side-bar .gotop").click(function(){\r\n\t\t\t$(\'html,body\').animate({\'scrollTop\':0},500); //返回顶部动画 数值越小时间越短\r\n\t\t});\r\n\t});\r\n</script>\r\n<ul id="side-bar" class="side-pannel side-bar">\r\n      <a href="http://wpa.qq.com/msgrd?v=3&uin=1234567&site=商城演示站&menu=yes" target="_blank" class="kefuqq"></a>\r\n      <a href="http://wpa.qq.com/msgrd?v=3&uin=7654317&site=商城演示站&menu=yes" target="_blank" class="kefuqq"></a>\r\n        <a href="http://amos1.taobao.com/msg.ww?v=2&uid=&s=2" target="_blank" class="kefuww"></a>\r\n    <a href="javascript:;" class="qr weixin"><i></i></a>\r\n  <a href="javascript:;" class="gotop" style="display:none;"></a>\r\n</ul>\r\n\r\n</body>\r\n</html>\r\n'
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>11</td>
+                    <td class="LeaveMsq">LeaveMsq</td>
+                    <td>test_leave_msg_011</td>
+                    <td>留言内容为空，发表留言失败</td>
+                    <td>0.175s</td>
+                    
+                        <td class="text-warning">失败</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>test_leave_msg_011 (test_leave_msg.LeaveMsq.test_leave_msg_011)执行——>【失败】
+</pre>
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "D:\Program Files\Python312\Lib\unittest\case.py", line 58, in testPartExecutor
+    yield
+</pre>
+                        
+
+                            <pre>  File "D:\Program Files\Python312\Lib\unittest\case.py", line 634, in run
+    self._callTestMethod(testMethod)
+</pre>
+                        
+
+                            <pre>  File "D:\Program Files\Python312\Lib\unittest\case.py", line 589, in _callTestMethod
+    if method() is not None:
+       ^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "D:\Program Files\Python312\Lib\site-packages\unittestreport\core\dataDriver.py", line 19, in wrapper
+    return func(self, params, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "D:\PythonProject\109\MallApi\testcases\test_leave_msg.py", line 22, in test_leave_msg
+    self.assertIn(yaml_data["expect_val"],resp.text)
+</pre>
+                        
+
+                            <pre>AssertionError: '留言内容为空' not found in '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">\r\n<html xmlns="http://www.w3.org/1999/xhtml">\r\n<head>\r\n<meta name="Generator" content="ECSHOP v2.7.3" />\r\n<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />\n<meta name="Keywords" content="" />\r\n<meta name="Description" content="" />\r\n<meta name="Description" content="" />\r\n\r\n\r\n<title>系统提示_商城演示站</title>\r\n\r\n\r\n\r\n<link rel="shortcut icon" href="favicon.ico" />\r\n<link rel="icon" href="animated_favicon.gif" type="image/gif" />\r\n<link href="themes/lizi/style.css" rel="stylesheet" type="text/css" />\r\n\r\n<script type="text/javascript" src="js/common.js"></script><style type="text/css">\r\np a {\r\n\tcolor: #006acd;\r\n\ttext-decoration: underline;\r\n}\r\n</style>\r\n</head><body>\r\n<script type="text/javascript" src="themes/lizi/js/jquery-1.9.1.min.js"></script>\r\n<script type="text/javascript" src="themes/lizi/js/jquery.json.js"></script>\r\n<script type="text/javascript" src="themes/lizi/js/transport_jquery.js"></script>\r\n<script type="text/javascript" src="themes/lizi/js/utils.js"></script>\r\n<script type="text/javascript" src="themes/lizi/js/jquery.SuperSlide.js"></script>\r\n<script type="text/javascript" src="themes/lizi/js/lizi_common.js"></script>\r\n\r\n\r\n<style>\r\n\r\n.topimg{width:100%; height:50px; margin:0 auto}\r\n.topimg a img{width:100%; height:50px; margin:0 auto; border:0px}\r\n</style>\r\n<div class="topimg">\r\n\t\t  \r\n\t   <a href=\'affiche.php?ad_id=10&uri=\'><img src=\'data/afficheimg/1460440720430642585.jpg\' width=\'1024\' height=\'50\' /></a>\t</div>\r\n<div id="header" class="new_header">\r\n  <div class="hd_bar">\r\n    <div class="bd_bar_bd cle">\r\n      <ul class="welcome">\r\n        <li><a id="favorite_wb" href="javascript:;" rel="nofollow">收藏商城演示站</a></li>\r\n\t\t<li id="ECS_MEMBERZONE"><a href="user.php" class="">qqq</a>&nbsp;[<a href="user.php?act=logout">退出</a>]</li>\r\n        \r\n            \r\n</li>\r\n      </ul>\r\n      <ul id="userinfo-bar">\r\n        <li class="more-menu"> <a href="user.php">会员中心</a><i class="iconfont arrow">&#8193;</i>\r\n          <div class="more-bd">\r\n            <div class="list"> <a href="user.php?act=order_list">我的订单</a> <a href="user.php?act=comment_list">我的评价</a> <a href="user.php?act=account_log">我的余额</a> <a href="user.php?act=bonus">我的红包</a> <a href="user.php?act=collection_list">我的收藏</a> <a href="user.php?act=address_list" class="last">修改收货地址</a> </div>\r\n          </div>\r\n        </li>\r\n        <li><a href="mobile/"><i class="iconfont vipico"></i>手机版</a></li>\r\n      </ul>\r\n    </div>\r\n  </div>\r\n  <script type="text/javascript">\r\n    \r\n    <!--\r\n    function checkSearchForm()\r\n    {\r\n        if(document.getElementById(\'keyword\').value)\r\n        {\r\n            return true;\r\n        }\r\n        else\r\n        {\r\n            alert("请输入搜索关键词！");\r\n            return false;\r\n        }\r\n    }\r\n    -->\r\n    \r\n    </script>\r\n  <div class="hd_main cle">\r\n    <div class="logo"> <a href="./" class="lizi_logo"><img src="themes/lizi/images/logo.gif" alt="商城演示站"/></a> \r\n    </div>\r\n    <div class="search_box">\r\n      <form action="search.php" method="get" id="searchForm" name="searchForm" onSubmit="return checkSearchForm()">\r\n        <input class="sea_input" type="text" name="keywords" id="keyword" value="" autocomplete="off">\r\n        <input type="hidden" value="k1" name="dataBi">\r\n        <button type="submit" class="sea_submit">搜索</button>\r\n      </form>\r\n    </div>\r\n        <div class="head_search_hot"> <span>热搜榜：</span>  <a href="search.php?keywords=%E6%B0%B4%E6%9E%9C" target="_blank">水果</a>  <a href="search.php?keywords=%E7%89%9B%E5%A5%B6" target="_blank">牛奶</a>  <a href="search.php?keywords=%E6%B5%8B%E8%AF%95" target="_blank">测试</a>  <a href="search.php?keywords=%E5%A8%81%E5%A3%AB%E5%BF%8C" target="_blank">威士忌</a>  <a href="search.php?keywords=%E8%94%AC%E8%8F%9C" target="_blank">蔬菜</a>  </div>\r\n        <div class="intro">\r\n      <ul>\r\n        <li class="no1"><a href="javascript:void(0);" target="_blank">\r\n          <h4>正品保障</h4>\r\n          <p>100%正品低价</p>\r\n          </a></li>\r\n        <li class="no2"><a href="javascript:void(0);" target="_blank">\r\n          <h4>30天退换货</h4>\r\n          <p>购物有保障</p>\r\n          </a></li>\r\n        <li class="no3"><a href="javascript:void(0);" target="_blank">\r\n          <h4>满99就包邮</h4>\r\n          <p>闪电发货</p>\r\n          </a></li>\r\n      </ul>\r\n    </div>\r\n  </div>\r\n  <div class="hd_nav">\r\n    <div class="hd_nav_bd cle">\r\n      <div class="main_nav" id="main_nav">\r\n        <div class="main_nav_link"> <a href="javascript:;">全部商品分类</a> <i class="iconfont">\ue62e</i> </div>\r\n        <div class="main_cata" id="J_mainCata" style="opacity: 0; display: none;">\r\n          <ul>\r\n                        <li class="first">\r\n              <h3 style="background:url(data/cat_ico/1449088788518670880.png) 20px center no-repeat;"><a href="category.php?id=2">生鲜食品</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449088848823694266.png) 20px center no-repeat;"><a href="category.php?id=1">酒水饮料</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449088901458193225.png) 20px center no-repeat;"><a href="category.php?id=5">粮油副食</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449088957941770398.png) 20px center no-repeat;"><a href="category.php?id=11">蔬菜水果</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449089137240745101.png) 20px center no-repeat;"><a href="category.php?id=9">休闲食品</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449089235904530709.png) 20px center no-repeat;"><a href="category.php?id=12">奶类食品</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449089297229428349.png) 20px center no-repeat;"><a href="category.php?id=6">天然干货</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449089358084135937.png) 20px center no-repeat;"><a href="category.php?id=7">精选茗茶</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/) 20px center no-repeat;"><a href="category.php?id=130">电脑</a></h3>\r\n            </li>\r\n                      </ul>\r\n        </div>\r\n       \r\n     \r\n        <div class="J_subCata" id="J_subCata" style="opacity: 0; left: 213px; top: 35px;">\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=15">精品肉类</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=64">羊肉</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=65">禽类</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=66">猪肉</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=67">牛肉</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=16">海鲜水产</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=68">参鲍</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=69">鱼</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=70">虾</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=71">蟹/贝</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=17">蛋制品</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=72">松花蛋/咸鸭蛋</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=73">鸡蛋</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=18">叶菜类</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=74">生菜</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=75">菠菜</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=76">圆椒</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=77">西兰花</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=19">根茎类</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=20">茄果类</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=21">菌菇类</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=22">进口生鲜</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=23">白酒</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=83">五粮液</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=84">泸州老窖</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=85">茅台</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=24">葡萄酒</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=25">洋酒</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=26">啤酒</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=27">其他酒品</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=78">其他品牌</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=79">黄酒</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=80">养生酒</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=28">饮料/水</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=29">红酒</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=81">白兰地</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=82">威士忌</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=30">食用油</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=86">其他食用油</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=87">菜仔油</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=88">花生油</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=89">橄榄油</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=90">礼盒</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=31">米面杂粮</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=91">面粉/面条</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=92">大米</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=93">意大利面</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=32">厨房调料</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=94">调味油/汁</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=95">酱油/醋</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=33">南北干货</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=34">方便速食</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=35">调味品</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=41">有机蔬菜</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=96">西红柿</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=97">韭菜</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=98">青菜</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=42">精选蔬菜</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=99">甘蓝</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=100">胡萝卜</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=101">黄瓜</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=43">进口水果</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=102">火龙果</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=103">菠萝蜜</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=104">奇异果</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=44">国产水果</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=105">水果礼盒</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=106">苹果</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=107">雪梨</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=36">休闲零食</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=108">果冻</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=109">枣类</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=110">蜜饯</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=111">肉类零食</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=112">坚果炒货</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=37">糖果</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=113">创意喜糖</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=114">口香糖</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=115">软糖</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=116">棒棒糖</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=38">巧克力</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=117">夹心巧克力</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=118">白巧克力</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=119">松露巧克力</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=120">黑巧克力</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=39">肉干肉脯/豆干</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=121">牛肉干</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=122">猪肉脯</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=123">牛肉粒</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=124">猪肉干</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=40">鱿鱼丝/鱼干</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=125">鱿鱼足</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=126">鱿鱼丝</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=127">墨鱼/乌贼</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=128">鱿鱼仔</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=129">鱿鱼片</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=45">进口奶品</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=46">国产奶品</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=47">奶粉</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=48">有机奶</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=49">原料奶</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=53">菌菇类</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=54">腌干海产</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=55">汤料</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=56">豆类</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=57">干菜/菜干</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=58">干果/果干</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=59">豆制品</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=60">腊味</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=61">白茶</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=62">红茶</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=63">绿茶</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n          </div>\r\n                  </div>\r\n      \r\n        \r\n                \r\n\r\n      </div>\r\n      <ul class="sub_nav cle" id="sub_nav">\r\n        <li class="current"><a href="./" rel="nofollow">首页</a>\r\n        </li>\r\n         \r\n        <li><a href="category.php?id=2"  rel="nofollow">生鲜食品</a>\r\n        </li>\r\n         \r\n        <li><a href="category.php?id=1"  rel="nofollow">酒水饮料</a>\r\n        </li>\r\n         \r\n        <li><a href="group_buy.php"  rel="nofollow">团购商品</a>\r\n        </li>\r\n         \r\n        <li><a href="exchange.php"  rel="nofollow">积分兑换</a>\r\n        </li>\r\n         \r\n        <li><a href="category.php?id=130"  rel="nofollow">电脑</a>\r\n        </li>\r\n              </ul>\r\n      <div class="hd_cart" id="ECS_CARTINFO"> \r\n         <a class="tit" href="flow.php"><b class="iconfont">Ɲ</b>去购物车结算<span><i class="iconfont">\ue62c</i></span><em class="num" id="hd_cartnum" style="visibility: visible;">0</em></a>\r\n       <div class="list">\r\n<p class="fail" style="display:none;"><i class="iconfont">ŭ</i><br>\r\n  购物车空啦<br>\r\n  爱Ta，就带Ta来购物车吧</p>\r\n \r\n</div>\r\n<script type="text/javascript">\r\nfunction deleteCartGoods(rec_id)\r\n{\r\n\tAjax.call(\'delete_cart_goods.php\', \'id=\'+rec_id, deleteCartGoodsResponse, \'POST\', \'JSON\');\r\n}\r\n\r\n/**\r\n * 接收返回的信息\r\n */\r\nfunction deleteCartGoodsResponse(res)\r\n{\r\n  if (res.error)\r\n  {\r\n    alert(res.err_msg);\r\n  }\r\n  else\r\n  {\r\n\t  $("#ECS_CARTINFO").html(res.content);\r\n  }\r\n}\r\n</script>       </div>\r\n    </div>\r\n  </div>\r\n  <div class="search_result"></div>\r\n</div>\r\n\r\n<div id="wrapper" class="common_main">\r\n  <div class="here cle" style="padding:10px 20px;"><a href=".">首页</a> <code>&gt;</code> 系统提示</div>\r\n  <div class="box" style="padding:20px;">\r\n   <div class="box_1">\r\n    <h3><span>系统信息</span></h3>\r\n    <div class="boxCenterList RelaArticle" align="center">\r\n      <div style="margin:20px auto;">\r\n      <p style="font-size: 14px; font-weight:bold; color: red;">发表留言成功</p>\r\n        <div class="blank"></div>\r\n                            <p><a href="user.php?act=message_list&order_id=0">返回留言列表</a></p>\r\n                        </div>\r\n    </div>\r\n   </div>\r\n  </div>\r\n</div>\r\n<div class="blank5"></div>\r\n<div id="footer">\r\n  <div class="ft-bg">\r\n    <div class="w-ensure mb20">\r\n    \t<div class="w-main">\r\n        \t<ul>\r\n            \t<li><a target="_blank" href=""><img width="300" height="90" src="themes/lizi/images/ft-svr1.gif"></a></li>\r\n            \t<li><a target="_blank" href=""><img width="300" height="90" src="themes/lizi/images/ft-svr2.gif"></a></li>\r\n            \t<li><a target="_blank" href=""><img width="300" height="90" src="themes/lizi/images/ft-svr3.gif"></a></li>\r\n            \t<li><a target="_blank" href=""><img width="300" height="90" src="themes/lizi/images/ft-svr4.gif"></a></li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n    <div class="ft_main">\r\n      <div class="ft_links">\r\n        <div class="ft_nav"> \r\n           \r\n           \r\n          <a href="article.php?id=1"    \r\n          class="noborder" \r\n           rel="nofollow">免责条款</a> \r\n           \r\n          <a href="article.php?id=2"    rel="nofollow">隐私保护</a> \r\n           \r\n          <a href="article.php?id=3"    rel="nofollow">咨询热点</a> \r\n           \r\n          <a href="article.php?id=4"    rel="nofollow">联系我们</a> \r\n           \r\n          <a href="article.php?id=5"    rel="nofollow">公司简介</a> \r\n           \r\n          <a href="wholesale.php"    rel="nofollow">批发方案</a> \r\n           \r\n          <a href="myship.php"    rel="nofollow">配送方式</a> \r\n           \r\n           \r\n          \r\n        </div>\r\n      </div>\r\n      <div class="ft_txt">\r\n        <p>&copy; 2005-2026 商城演示站 版权所有，并保留所有权利。ICP备案证书号：<a href="http://www.miitbeian.gov.cn" target="_blank" rel="nofollow">蜀ICP12345678号</a></p>\r\n        <p class="ft_contact"> <span>服务时间：09:00-23:00</span>  \r\n          <span class="ft_phone">客服热线: <em>028-87760898</em></span> \r\n          </p>\r\n          \r\n                </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<script>\r\n\t$(function(){\r\n\t\t$(window).scroll(function(){\r\n\t\t\tif($(window).scrollTop()>100){  //距顶部多少像素时，出现返回顶部按钮\r\n\t\t\t\t$("#side-bar .gotop").fadeIn();\t\r\n\t\t\t}\r\n\t\t\telse{\r\n\t\t\t\t$("#side-bar .gotop").hide();\r\n\t\t\t}\r\n\t\t});\r\n\t\t$("#side-bar .gotop").click(function(){\r\n\t\t\t$(\'html,body\').animate({\'scrollTop\':0},500); //返回顶部动画 数值越小时间越短\r\n\t\t});\r\n\t});\r\n</script>\r\n<ul id="side-bar" class="side-pannel side-bar">\r\n      <a href="http://wpa.qq.com/msgrd?v=3&uin=1234567&site=商城演示站&menu=yes" target="_blank" class="kefuqq"></a>\r\n      <a href="http://wpa.qq.com/msgrd?v=3&uin=7654317&site=商城演示站&menu=yes" target="_blank" class="kefuqq"></a>\r\n        <a href="http://amos1.taobao.com/msg.ww?v=2&uid=&s=2" target="_blank" class="kefuww"></a>\r\n    <a href="javascript:;" class="qr weixin"><i></i></a>\r\n  <a href="javascript:;" class="gotop" style="display:none;"></a>\r\n</ul>\r\n\r\n</body>\r\n</html>\r\n'
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>12</td>
+                    <td class="LeaveMsq">LeaveMsq</td>
+                    <td>test_leave_msg_012</td>
+                    <td>留言内容过长，发表留言失败</td>
+                    <td>0.182s</td>
+                    
+                        <td class="text-warning">失败</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>test_leave_msg_012 (test_leave_msg.LeaveMsq.test_leave_msg_012)执行——>【失败】
+</pre>
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "D:\Program Files\Python312\Lib\unittest\case.py", line 58, in testPartExecutor
+    yield
+</pre>
+                        
+
+                            <pre>  File "D:\Program Files\Python312\Lib\unittest\case.py", line 634, in run
+    self._callTestMethod(testMethod)
+</pre>
+                        
+
+                            <pre>  File "D:\Program Files\Python312\Lib\unittest\case.py", line 589, in _callTestMethod
+    if method() is not None:
+       ^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "D:\Program Files\Python312\Lib\site-packages\unittestreport\core\dataDriver.py", line 19, in wrapper
+    return func(self, params, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "D:\PythonProject\109\MallApi\testcases\test_leave_msg.py", line 22, in test_leave_msg
+    self.assertIn(yaml_data["expect_val"],resp.text)
+</pre>
+                        
+
+                            <pre>AssertionError: '留言内容不能超过500个字' not found in '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">\r\n<html xmlns="http://www.w3.org/1999/xhtml">\r\n<head>\r\n<meta name="Generator" content="ECSHOP v2.7.3" />\r\n<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />\n<meta name="Keywords" content="" />\r\n<meta name="Description" content="" />\r\n<meta name="Description" content="" />\r\n\r\n\r\n<title>系统提示_商城演示站</title>\r\n\r\n\r\n\r\n<link rel="shortcut icon" href="favicon.ico" />\r\n<link rel="icon" href="animated_favicon.gif" type="image/gif" />\r\n<link href="themes/lizi/style.css" rel="stylesheet" type="text/css" />\r\n\r\n<script type="text/javascript" src="js/common.js"></script><style type="text/css">\r\np a {\r\n\tcolor: #006acd;\r\n\ttext-decoration: underline;\r\n}\r\n</style>\r\n</head><body>\r\n<script type="text/javascript" src="themes/lizi/js/jquery-1.9.1.min.js"></script>\r\n<script type="text/javascript" src="themes/lizi/js/jquery.json.js"></script>\r\n<script type="text/javascript" src="themes/lizi/js/transport_jquery.js"></script>\r\n<script type="text/javascript" src="themes/lizi/js/utils.js"></script>\r\n<script type="text/javascript" src="themes/lizi/js/jquery.SuperSlide.js"></script>\r\n<script type="text/javascript" src="themes/lizi/js/lizi_common.js"></script>\r\n\r\n\r\n<style>\r\n\r\n.topimg{width:100%; height:50px; margin:0 auto}\r\n.topimg a img{width:100%; height:50px; margin:0 auto; border:0px}\r\n</style>\r\n<div class="topimg">\r\n\t\t  \r\n\t   <a href=\'affiche.php?ad_id=10&uri=\'><img src=\'data/afficheimg/1460440720430642585.jpg\' width=\'1024\' height=\'50\' /></a>\t</div>\r\n<div id="header" class="new_header">\r\n  <div class="hd_bar">\r\n    <div class="bd_bar_bd cle">\r\n      <ul class="welcome">\r\n        <li><a id="favorite_wb" href="javascript:;" rel="nofollow">收藏商城演示站</a></li>\r\n\t\t<li id="ECS_MEMBERZONE"><a href="user.php" class="">qqq</a>&nbsp;[<a href="user.php?act=logout">退出</a>]</li>\r\n        \r\n            \r\n</li>\r\n      </ul>\r\n      <ul id="userinfo-bar">\r\n        <li class="more-menu"> <a href="user.php">会员中心</a><i class="iconfont arrow">&#8193;</i>\r\n          <div class="more-bd">\r\n            <div class="list"> <a href="user.php?act=order_list">我的订单</a> <a href="user.php?act=comment_list">我的评价</a> <a href="user.php?act=account_log">我的余额</a> <a href="user.php?act=bonus">我的红包</a> <a href="user.php?act=collection_list">我的收藏</a> <a href="user.php?act=address_list" class="last">修改收货地址</a> </div>\r\n          </div>\r\n        </li>\r\n        <li><a href="mobile/"><i class="iconfont vipico"></i>手机版</a></li>\r\n      </ul>\r\n    </div>\r\n  </div>\r\n  <script type="text/javascript">\r\n    \r\n    <!--\r\n    function checkSearchForm()\r\n    {\r\n        if(document.getElementById(\'keyword\').value)\r\n        {\r\n            return true;\r\n        }\r\n        else\r\n        {\r\n            alert("请输入搜索关键词！");\r\n            return false;\r\n        }\r\n    }\r\n    -->\r\n    \r\n    </script>\r\n  <div class="hd_main cle">\r\n    <div class="logo"> <a href="./" class="lizi_logo"><img src="themes/lizi/images/logo.gif" alt="商城演示站"/></a> \r\n    </div>\r\n    <div class="search_box">\r\n      <form action="search.php" method="get" id="searchForm" name="searchForm" onSubmit="return checkSearchForm()">\r\n        <input class="sea_input" type="text" name="keywords" id="keyword" value="" autocomplete="off">\r\n        <input type="hidden" value="k1" name="dataBi">\r\n        <button type="submit" class="sea_submit">搜索</button>\r\n      </form>\r\n    </div>\r\n        <div class="head_search_hot"> <span>热搜榜：</span>  <a href="search.php?keywords=%E6%B0%B4%E6%9E%9C" target="_blank">水果</a>  <a href="search.php?keywords=%E7%89%9B%E5%A5%B6" target="_blank">牛奶</a>  <a href="search.php?keywords=%E6%B5%8B%E8%AF%95" target="_blank">测试</a>  <a href="search.php?keywords=%E5%A8%81%E5%A3%AB%E5%BF%8C" target="_blank">威士忌</a>  <a href="search.php?keywords=%E8%94%AC%E8%8F%9C" target="_blank">蔬菜</a>  </div>\r\n        <div class="intro">\r\n      <ul>\r\n        <li class="no1"><a href="javascript:void(0);" target="_blank">\r\n          <h4>正品保障</h4>\r\n          <p>100%正品低价</p>\r\n          </a></li>\r\n        <li class="no2"><a href="javascript:void(0);" target="_blank">\r\n          <h4>30天退换货</h4>\r\n          <p>购物有保障</p>\r\n          </a></li>\r\n        <li class="no3"><a href="javascript:void(0);" target="_blank">\r\n          <h4>满99就包邮</h4>\r\n          <p>闪电发货</p>\r\n          </a></li>\r\n      </ul>\r\n    </div>\r\n  </div>\r\n  <div class="hd_nav">\r\n    <div class="hd_nav_bd cle">\r\n      <div class="main_nav" id="main_nav">\r\n        <div class="main_nav_link"> <a href="javascript:;">全部商品分类</a> <i class="iconfont">\ue62e</i> </div>\r\n        <div class="main_cata" id="J_mainCata" style="opacity: 0; display: none;">\r\n          <ul>\r\n                        <li class="first">\r\n              <h3 style="background:url(data/cat_ico/1449088788518670880.png) 20px center no-repeat;"><a href="category.php?id=2">生鲜食品</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449088848823694266.png) 20px center no-repeat;"><a href="category.php?id=1">酒水饮料</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449088901458193225.png) 20px center no-repeat;"><a href="category.php?id=5">粮油副食</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449088957941770398.png) 20px center no-repeat;"><a href="category.php?id=11">蔬菜水果</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449089137240745101.png) 20px center no-repeat;"><a href="category.php?id=9">休闲食品</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449089235904530709.png) 20px center no-repeat;"><a href="category.php?id=12">奶类食品</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449089297229428349.png) 20px center no-repeat;"><a href="category.php?id=6">天然干货</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/1449089358084135937.png) 20px center no-repeat;"><a href="category.php?id=7">精选茗茶</a></h3>\r\n            </li>\r\n                        <li >\r\n              <h3 style="background:url(data/cat_ico/) 20px center no-repeat;"><a href="category.php?id=130">电脑</a></h3>\r\n            </li>\r\n                      </ul>\r\n        </div>\r\n       \r\n     \r\n        <div class="J_subCata" id="J_subCata" style="opacity: 0; left: 213px; top: 35px;">\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=15">精品肉类</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=64">羊肉</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=65">禽类</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=66">猪肉</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=67">牛肉</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=16">海鲜水产</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=68">参鲍</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=69">鱼</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=70">虾</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=71">蟹/贝</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=17">蛋制品</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=72">松花蛋/咸鸭蛋</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=73">鸡蛋</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=18">叶菜类</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=74">生菜</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=75">菠菜</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=76">圆椒</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=77">西兰花</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=19">根茎类</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=20">茄果类</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=21">菌菇类</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=22">进口生鲜</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=23">白酒</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=83">五粮液</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=84">泸州老窖</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=85">茅台</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=24">葡萄酒</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=25">洋酒</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=26">啤酒</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=27">其他酒品</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=78">其他品牌</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=79">黄酒</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=80">养生酒</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=28">饮料/水</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=29">红酒</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=81">白兰地</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=82">威士忌</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=30">食用油</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=86">其他食用油</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=87">菜仔油</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=88">花生油</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=89">橄榄油</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=90">礼盒</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=31">米面杂粮</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=91">面粉/面条</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=92">大米</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=93">意大利面</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=32">厨房调料</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=94">调味油/汁</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=95">酱油/醋</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=33">南北干货</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=34">方便速食</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=35">调味品</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=41">有机蔬菜</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=96">西红柿</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=97">韭菜</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=98">青菜</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=42">精选蔬菜</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=99">甘蓝</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=100">胡萝卜</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=101">黄瓜</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=43">进口水果</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=102">火龙果</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=103">菠萝蜜</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=104">奇异果</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=44">国产水果</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=105">水果礼盒</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=106">苹果</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=107">雪梨</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=36">休闲零食</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=108">果冻</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=109">枣类</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=110">蜜饯</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=111">肉类零食</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=112">坚果炒货</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=37">糖果</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=113">创意喜糖</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=114">口香糖</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=115">软糖</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=116">棒棒糖</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=38">巧克力</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=117">夹心巧克力</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=118">白巧克力</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=119">松露巧克力</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=120">黑巧克力</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=39">肉干肉脯/豆干</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=121">牛肉干</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=122">猪肉脯</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=123">牛肉粒</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=124">猪肉干</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=40">鱿鱼丝/鱼干</a> </dt>\r\n              <dd> \r\n              \t  \r\n\t\t\t<a href="category.php?id=125">鱿鱼足</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=126">鱿鱼丝</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=127">墨鱼/乌贼</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=128">鱿鱼仔</a> \r\n\t\t \r\n\t\t\t<a href="category.php?id=129">鱿鱼片</a> \r\n\t\t \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=45">进口奶品</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=46">国产奶品</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=47">奶粉</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=48">有机奶</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=49">原料奶</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=53">菌菇类</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=54">腌干海产</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=55">汤料</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=56">豆类</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=57">干菜/菜干</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=58">干果/果干</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=59">豆制品</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=60">腊味</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n            <dl>\r\n              <dt><a href="category.php?id=61">白茶</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=62">红茶</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n            <dl>\r\n              <dt><a href="category.php?id=63">绿茶</a> </dt>\r\n              <dd> \r\n              \t  \r\n              </dd>\r\n            </dl>\r\n\t    <div class="clear"></div>\r\n               \r\n          </div>\r\n          \r\n          <div class="J_subView" style="display: none;">\r\n           \r\n          </div>\r\n                  </div>\r\n      \r\n        \r\n                \r\n\r\n      </div>\r\n      <ul class="sub_nav cle" id="sub_nav">\r\n        <li class="current"><a href="./" rel="nofollow">首页</a>\r\n        </li>\r\n         \r\n        <li><a href="category.php?id=2"  rel="nofollow">生鲜食品</a>\r\n        </li>\r\n         \r\n        <li><a href="category.php?id=1"  rel="nofollow">酒水饮料</a>\r\n        </li>\r\n         \r\n        <li><a href="group_buy.php"  rel="nofollow">团购商品</a>\r\n        </li>\r\n         \r\n        <li><a href="exchange.php"  rel="nofollow">积分兑换</a>\r\n        </li>\r\n         \r\n        <li><a href="category.php?id=130"  rel="nofollow">电脑</a>\r\n        </li>\r\n              </ul>\r\n      <div class="hd_cart" id="ECS_CARTINFO"> \r\n         <a class="tit" href="flow.php"><b class="iconfont">Ɲ</b>去购物车结算<span><i class="iconfont">\ue62c</i></span><em class="num" id="hd_cartnum" style="visibility: visible;">0</em></a>\r\n       <div class="list">\r\n<p class="fail" style="display:none;"><i class="iconfont">ŭ</i><br>\r\n  购物车空啦<br>\r\n  爱Ta，就带Ta来购物车吧</p>\r\n \r\n</div>\r\n<script type="text/javascript">\r\nfunction deleteCartGoods(rec_id)\r\n{\r\n\tAjax.call(\'delete_cart_goods.php\', \'id=\'+rec_id, deleteCartGoodsResponse, \'POST\', \'JSON\');\r\n}\r\n\r\n/**\r\n * 接收返回的信息\r\n */\r\nfunction deleteCartGoodsResponse(res)\r\n{\r\n  if (res.error)\r\n  {\r\n    alert(res.err_msg);\r\n  }\r\n  else\r\n  {\r\n\t  $("#ECS_CARTINFO").html(res.content);\r\n  }\r\n}\r\n</script>       </div>\r\n    </div>\r\n  </div>\r\n  <div class="search_result"></div>\r\n</div>\r\n\r\n<div id="wrapper" class="common_main">\r\n  <div class="here cle" style="padding:10px 20px;"><a href=".">首页</a> <code>&gt;</code> 系统提示</div>\r\n  <div class="box" style="padding:20px;">\r\n   <div class="box_1">\r\n    <h3><span>系统信息</span></h3>\r\n    <div class="boxCenterList RelaArticle" align="center">\r\n      <div style="margin:20px auto;">\r\n      <p style="font-size: 14px; font-weight:bold; color: red;">发表留言成功</p>\r\n        <div class="blank"></div>\r\n                            <p><a href="user.php?act=message_list&order_id=0">返回留言列表</a></p>\r\n                        </div>\r\n    </div>\r\n   </div>\r\n  </div>\r\n</div>\r\n<div class="blank5"></div>\r\n<div id="footer">\r\n  <div class="ft-bg">\r\n    <div class="w-ensure mb20">\r\n    \t<div class="w-main">\r\n        \t<ul>\r\n            \t<li><a target="_blank" href=""><img width="300" height="90" src="themes/lizi/images/ft-svr1.gif"></a></li>\r\n            \t<li><a target="_blank" href=""><img width="300" height="90" src="themes/lizi/images/ft-svr2.gif"></a></li>\r\n            \t<li><a target="_blank" href=""><img width="300" height="90" src="themes/lizi/images/ft-svr3.gif"></a></li>\r\n            \t<li><a target="_blank" href=""><img width="300" height="90" src="themes/lizi/images/ft-svr4.gif"></a></li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n    <div class="ft_main">\r\n      <div class="ft_links">\r\n        <div class="ft_nav"> \r\n           \r\n           \r\n          <a href="article.php?id=1"    \r\n          class="noborder" \r\n           rel="nofollow">免责条款</a> \r\n           \r\n          <a href="article.php?id=2"    rel="nofollow">隐私保护</a> \r\n           \r\n          <a href="article.php?id=3"    rel="nofollow">咨询热点</a> \r\n           \r\n          <a href="article.php?id=4"    rel="nofollow">联系我们</a> \r\n           \r\n          <a href="article.php?id=5"    rel="nofollow">公司简介</a> \r\n           \r\n          <a href="wholesale.php"    rel="nofollow">批发方案</a> \r\n           \r\n          <a href="myship.php"    rel="nofollow">配送方式</a> \r\n           \r\n           \r\n          \r\n        </div>\r\n      </div>\r\n      <div class="ft_txt">\r\n        <p>&copy; 2005-2026 商城演示站 版权所有，并保留所有权利。ICP备案证书号：<a href="http://www.miitbeian.gov.cn" target="_blank" rel="nofollow">蜀ICP12345678号</a></p>\r\n        <p class="ft_contact"> <span>服务时间：09:00-23:00</span>  \r\n          <span class="ft_phone">客服热线: <em>028-87760898</em></span> \r\n          </p>\r\n          \r\n                </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<script>\r\n\t$(function(){\r\n\t\t$(window).scroll(function(){\r\n\t\t\tif($(window).scrollTop()>100){  //距顶部多少像素时，出现返回顶部按钮\r\n\t\t\t\t$("#side-bar .gotop").fadeIn();\t\r\n\t\t\t}\r\n\t\t\telse{\r\n\t\t\t\t$("#side-bar .gotop").hide();\r\n\t\t\t}\r\n\t\t});\r\n\t\t$("#side-bar .gotop").click(function(){\r\n\t\t\t$(\'html,body\').animate({\'scrollTop\':0},500); //返回顶部动画 数值越小时间越短\r\n\t\t});\r\n\t});\r\n</script>\r\n<ul id="side-bar" class="side-pannel side-bar">\r\n      <a href="http://wpa.qq.com/msgrd?v=3&uin=1234567&site=商城演示站&menu=yes" target="_blank" class="kefuqq"></a>\r\n      <a href="http://wpa.qq.com/msgrd?v=3&uin=7654317&site=商城演示站&menu=yes" target="_blank" class="kefuqq"></a>\r\n        <a href="http://amos1.taobao.com/msg.ww?v=2&uid=&s=2" target="_blank" class="kefuww"></a>\r\n    <a href="javascript:;" class="qr weixin"><i></i></a>\r\n  <a href="javascript:;" class="gotop" style="display:none;"></a>\r\n</ul>\r\n\r\n</body>\r\n</html>\r\n'
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>13</td>
+                    <td class="Login">Login</td>
+                    <td>test_login_001</td>
+                    <td>用户名正确，密码正确，登录成功</td>
+                    <td>0.105s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>test_login_001 (test_login.Login.test_login_001)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>14</td>
+                    <td class="Login">Login</td>
+                    <td>test_login_002</td>
+                    <td>用户名正确，密码错误，登录失败</td>
+                    <td>0.0669s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>test_login_002 (test_login.Login.test_login_002)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>15</td>
+                    <td class="Login">Login</td>
+                    <td>test_login_003</td>
+                    <td>用户名错误，密码正确，登录失败</td>
+                    <td>0.101s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>test_login_003 (test_login.Login.test_login_003)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>16</td>
+                    <td class="Login">Login</td>
+                    <td>test_login_004</td>
+                    <td>用户名为空，密码正确，登录失败</td>
+                    <td>0.0937s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>test_login_004 (test_login.Login.test_login_004)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>17</td>
+                    <td class="Login">Login</td>
+                    <td>test_login_005</td>
+                    <td>用户名正确，密码为空，登录失败</td>
+                    <td>0.0938s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>test_login_005 (test_login.Login.test_login_005)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+
+            </tbody>
+        </table>
+    </div>
+
+    <div style="height: 200px"></div>
+</div>
+
+
+<script>
+    var tbodyTr = $('tbody tr');
+    var testResult = $("#testResult");
+    var testClass = $("#testClass");
+    <!--    用例执行详细信息显示切换-->
+    $(".btn_info").click(function () {
+        $(this).parent().parent().next().toggle();
+
+    });
+    // 当选择用例类之后触发
+    testClass.change(function () {
+        var cls = $(this).val();
+        var res = testResult.val();
+        elementDisplay(cls, res);
+        sort()
+    });
+    testResult.change(function () {
+        var res = $(this).val();
+        var cls = testClass.val();
+        elementDisplay(cls, res);
+        sort()
+    });
+
+    function elementDisplay(cls, res) {
+        // 用例数据的显示
+        if (cls === "所有") {
+            if (res === "所有") {
+                tbodyTr.has('button').show();
+            } else if (res === '成功') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.text-success').show()
+
+            } else if (res === '失败') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.text-warning').show()
+
+            } else if (res === '错误') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.text-danger').show()
+
+            } else if (res === '跳过') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.text-info').show()
+            }
+        } else {
+            if (res === "所有") {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.' + cls + '').show()
+            } else if (res === '成功') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.' + cls + '').has('.text-success').show()
+            } else if (res === '失败') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.' + cls + '').has('.text-warning').show()
+            } else if (res === '错误') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.' + cls + '').has('.text-danger').show()
+            } else if (res === '跳过') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.' + cls + '').has('.text-info').show()
+            }
+        }
+    }
+
+    function sort() {
+        //重新排列显示序号
+        // 选择所有可以见的tr
+        var visibleTr = tbodyTr.filter(":visible");
+
+        visibleTr.each(function (index, element) {
+            element.firstElementChild.innerHTML = index + 1;
+
+        })
+
+    }
+
+
+</script>
+
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('char'));
+    var myChart2 = echarts.init(document.getElementById('char2'));
+    // 指定图表的配置项和数据
+    option = {
+        color: ['#00a10a', '#ddb518', 'rgba(204,46,41,0.73)', '#85898c'],
+        tooltip: {
+            trigger: 'item',
+            formatter: '{a} <br/>{b}: {c} ({d}%)'
+        },
+        legend: {
+            orient: 'vertical',
+            left: 10,
+            data: ['通过', '失败', '错误', '跳过']
+        },
+        series: [
+            {
+                name: '测试结果',
+                type: 'pie',
+                radius: ['50%', '70%'],
+                avoidLabelOverlap: false,
+                label: {
+                    show: false,
+                    position: 'center'
+                },
+                emphasis: {
+                    label: {
+                        show: true,
+                        fontSize: '30',
+                        fontWeight: 'bold'
+                    }
+                },
+                labelLine: {
+                    show: false
+                },
+                data: [
+                    {value: 11, name: '通过'},
+                    {value: 6, name: '失败'},
+                    {value: 0, name: '错误'},
+                    {value: 0, name: '跳过'}
+                ]
+            }
+        ]
+    };
+    option2 = {
+        tooltip: {
+            formatter: '{a} <br/>{b} : {c}%'
+        },
+        toolbox: {
+            feature: {
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        series: [
+            {
+                name: '测试结果',
+                type: 'gauge',
+                detail: {formatter: '64.71%'},
+                data: [{value: '64.71', name: '用例通过率'}],
+                axisLine: {
+                    lineStyle: {
+                        color: [
+                            [0.2, '#c20000'],
+                            [0.8, '#ddb518'],
+                            [1, '#00a10a']]
+                    }
+                }
+            }
+        ]
+    };
+
+
+    myChart2.setOption(option2);
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+- title: 发表留言，发表成功
+  leave_msg_data: {
+    "msg_type": "0",
+    "msg_title": "留言",
+    "msg_content": "留言",
+    "act": "act_add_message",
+  }
+  expect_val: 留言成功
+
+- title: 发表投诉，发表成功
+  leave_msg_data: {
+    "msg_type": "1",
+    "msg_title": "投诉",
+    "msg_content": "投诉",
+    "act": "act_add_message",
+  }
+  expect_val: 留言成功
+
+- title: 发表询问，发表成功
+  leave_msg_data: {
+    "msg_type": "2",
+    "msg_title": "询问",
+    "msg_content": "询问",
+    "act": "act_add_message",
+  }
+  expect_val: 留言成功
+
+- title: 发表售后，发表成功
+  leave_msg_data: {
+    "msg_type": "3",
+    "msg_title": "售后",
+    "msg_content": "售后",
+    "act": "act_add_message",
+  }
+  expect_val: 留言成功
+
+- title: 发表求购，发表成功
+  leave_msg_data: {
+    "msg_type": "4",
+    "msg_title": "求购",
+    "msg_content": "求购",
+    "act": "act_add_message",
+  }
+  expect_val: 留言成功
+
+- title: 留言类型传入特殊字符，发表留言失败
+  leave_msg_data: {
+    "msg_type": ".*?",
+    "msg_title": "特殊字符",
+    "msg_content": "特殊字符",
+    "act": "act_add_message",
+  }
+  expect_val: 留言失败
+
+- title: 留言类型传入不存在的类型，发表留言失败
+  leave_msg_data: {
+    "msg_type": "5",
+    "msg_title": "不存在的类型",
+    "msg_content": "不存在的类型",
+    "act": "act_add_message",
+  }
+  expect_val: 留言失败
+
+- title: 留言类型为空，发表留言失败
+  leave_msg_data: {
+    "msg_type": "",
+    "msg_title": "留言类型为空",
+    "msg_content": "留言类型为空",
+    "act": "act_add_message",
+  }
+  expect_val: 留言失败
+
+- title: 留言主题为空，发表留言失败
+  leave_msg_data: {
+    "msg_type": "0",
+    "msg_title": "",
+    "msg_content": "留言主题为空",
+    "act": "act_add_message",
+  }
+  expect_val: 留言标题为空
+
+- title: 留言主题过长，发表留言失败
+  leave_msg_data: {
+    "msg_type": "0",
+    "msg_title": "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789a",
+    "msg_content": "留言主题过长",
+    "act": "act_add_message",
+  }
+  expect_val: 留言标题不能超过200个字
+
+- title: 留言内容为空，发表留言失败
+  leave_msg_data: {
+    "msg_type": "0",
+    "msg_title": "留言内容为空",
+    "msg_content": "",
+    "act": "act_add_message",
+  }
+  expect_val: 留言内容为空
+
+- title: 留言内容过长，发表留言失败
+  leave_msg_data: {
+    "msg_type": "0",
+    "msg_title": "留言内容过长",
+    "msg_content": "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789a01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789a01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789a",
+    "act": "act_add_message",
+  }
+  expect_val: 留言内容不能超过500个字

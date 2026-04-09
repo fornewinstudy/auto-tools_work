@@ -1,0 +1,49 @@
+- title: 用户名正确，密码正确，登录成功
+  login_data: {
+    "username": "qqq",
+    "password": "123456",
+    "act": "act_login",
+    "back_act": "http://www.mall.com/goods.php?id=30",
+    "submit": "登 录",
+  }
+  expect_val: 登录成功
+
+- title: 用户名正确，密码错误，登录失败
+  login_data: {
+    "username": "qqq",
+    "password": "1234567",
+    "act": "act_login",
+    "back_act": "http://www.mall.com/goods.php?id=30",
+    "submit": "登 录",
+  }
+  expect_val: 用户名或密码错误
+
+- title: 用户名错误，密码正确，登录失败
+  login_data: {
+    "username": "qqqad",
+    "password": "123456",
+    "act": "act_login",
+    "back_act": "http://www.mall.com/goods.php?id=30",
+    "submit": "登 录",
+  }
+  expect_val: 用户名或密码错误
+
+- title: 用户名为空，密码正确，登录失败
+  login_data: {
+    "username": "",
+    "password": "123456",
+    "act": "act_login",
+    "back_act": "http://www.mall.com/goods.php?id=30",
+    "submit": "登 录",
+  }
+  expect_val: 用户名或密码错误
+
+- title: 用户名正确，密码为空，登录失败
+  login_data: {
+    "username": "qqq",
+    "password": "",
+    "act": "act_login",
+    "back_act": "http://www.mall.com/goods.php?id=30",
+    "submit": "登 录",
+  }
+  expect_val: 用户名或密码错误
