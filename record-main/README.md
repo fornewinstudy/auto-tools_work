@@ -18,4 +18,6 @@ chmod +x start_all.sh
 
 ## 输入record跳转时间（s）
 请输入跳转时间：0
+请输入map文件: 0
+请输入割草角度: 0
 
