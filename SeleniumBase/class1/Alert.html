@@ -1,0 +1,21 @@
+<html>  
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Conclusion</title>
+		<script type="text/javascript">  
+		function touchButton(){  
+			var userName = prompt("What is your name?", "Enter your name here!");     
+			if(userName){  
+				alert("Nice to meet you ~ "+userName+" !");  
+			}  
+		}  
+		</script>  
+	</head>  
+	<body>  
+		<div style="margin-top:100px; text-align:center">  
+			<button onclick="alert('第一种消息弹框：\n警告！')" style="cursor:pointer"><h3>第一种弹框</h3></button>  
+			<button onclick="touchButton()" style="cursor:pointer"><h3>第二种弹框</h3></button>  
+			<button onclick="confirm('这是第三种弹框，“确定”返回true，“取消”返回false')" style="cursor:pointer"><h3>第三种弹框</h3></button>  
+		</div>  
+	</body>  
+</html> 

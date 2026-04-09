@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>
+Clicks
+</title>
+</head>
+
+<script>
+function rcl(e){
+	if (!e) e = window.event;
+	document.f1.t2.value += "[RIGHT_CLICK]";
+}
+function dcl(e){
+	if (!e) e = window.event;
+	document.f1.t2.value += "[DOUBLE_CLICK]";
+}
+function cl(e){
+	if (!e) e = window.event;
+	document.f1.t2.value += "[CLICK]";
+}
+function onclick1(s){
+	document.f1.t2.value = "onclick_" + s;
+}
+function onchange1(s){    
+	document.f1.t2.value = "onchange_" + s;
+}
+</script>
+
+<body>
+<form name="f1">
+<textarea name="t2" style="width:200px;height:100px;"></textarea><br>
+<input type="button" onclick="document.f1.t2.value=''" value="Clear" name="t1"><br><br><br>
+<div ondblclick="dcl(event)"></div>
+<input type="button" value="dbl click me" ondblclick="dcl(event)"><br>
+<input type="button" value="click me" onclick="cl(event)"><br>
+<div oncontextmenu="rcl(event)"></div>
+<input type="button" value="right click me" oncontextmenu="rcl(event)"><br>
+</body>
+
+</html>
