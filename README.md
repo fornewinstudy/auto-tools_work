@@ -2,7 +2,7 @@
 # Autotest
 
 #### 介绍
-自动化测试代码仓库，仓库包含python基础语法，requests接口自动化，selenium界面自动化及PO设计模型
+自动化测试代码仓库，仓库包含requests接口自动化，selenium界面自动化及PO设计模型
 =======
 # My_production
 
